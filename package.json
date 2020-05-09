@@ -37,7 +37,12 @@
     "react-google-maps": "9.4.5",
     "react-router-dom": "5.1.2",
     "react-scripts": "^3.4.0",
-    "reactstrap": "8.4.1"
+    "reactstrap": "8.4.1",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "react-redux": "^7.1.1"
   },
   "devDependencies": {
     "@types/googlemaps": "3.39.2",
