@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // reactstrap components
 import {
   DropdownMenu,
@@ -33,7 +33,7 @@ import {
   Nav,
   Container,
   Media
-} from "reactstrap";
+} from 'reactstrap';
 
 class AdminNavbar extends React.Component {
   render() {
@@ -66,7 +66,7 @@ class AdminNavbar extends React.Component {
                     <span className="avatar avatar-sm rounded-circle">
                       <img
                         alt="..."
-                        src={require("../../assets/img/theme/team-4-800x800.jpg")}
+                        src={require('../../assets/img/theme/team-4-800x800.jpg')}
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">

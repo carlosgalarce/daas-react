@@ -15,13 +15,13 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 // node.js library that concatenates classes (strings)
-import classnames from "classnames";
+import classnames from 'classnames';
 // javascipt plugin for creating charts
-import Chart from "chart.js";
+import Chart from 'chart.js';
 // react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar } from 'react-chartjs-2';
 // reactstrap components
 import {
   Button,
@@ -36,7 +36,7 @@ import {
   Container,
   Row,
   Col
-} from "reactstrap";
+} from 'reactstrap';
 
 // core components
 import {
@@ -44,16 +44,16 @@ import {
   parseOptions,
   chartExample1,
   chartExample2
-} from "../variables/charts";
+} from '../variables/charts';
 
-import Header from "../components/Headers/Header";
+import Header from '../components/Headers/Header';
 
 class Index extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       activeNav: 1,
-      chartExample1Data: "data1"
+      chartExample1Data: 'data1'
     };
     if (window.Chart) {
       parseOptions(Chart, chartOptions());
@@ -64,7 +64,7 @@ class Index extends React.Component {
     this.setState({
       activeNav: index,
       chartExample1Data:
-        this.state.chartExample1Data === "data1" ? "data2" : "data1"
+        this.state.chartExample1Data === 'data1' ? 'data2' : 'data1'
     });
   };
   render() {
@@ -88,7 +88,7 @@ class Index extends React.Component {
                       <Nav className="justify-content-end" pills>
                         <NavItem>
                           <NavLink
-                            className={classnames("py-2 px-3", {
+                            className={classnames('py-2 px-3', {
                               active: this.state.activeNav === 1
                             })}
                             href="#pablo"
@@ -100,7 +100,7 @@ class Index extends React.Component {
                         </NavItem>
                         <NavItem>
                           <NavLink
-                            className={classnames("py-2 px-3", {
+                            className={classnames('py-2 px-3', {
                               active: this.state.activeNav === 2
                             })}
                             data-toggle="tab"
@@ -121,6 +121,7 @@ class Index extends React.Component {
                     <Line
                       data={chartExample1[this.state.chartExample1Data]}
                       options={chartExample1.options}
+                      // eslint-disable-next-line no-console
                       getDatasetAtEvent={e => console.log(e)}
                     />
                   </div>
@@ -186,7 +187,7 @@ class Index extends React.Component {
                       <td>4,569</td>
                       <td>340</td>
                       <td>
-                        <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                        <i className="fas fa-arrow-up text-success mr-3" />{' '}
                         46,53%
                       </td>
                     </tr>
@@ -195,7 +196,7 @@ class Index extends React.Component {
                       <td>3,985</td>
                       <td>319</td>
                       <td>
-                        <i className="fas fa-arrow-down text-warning mr-3" />{" "}
+                        <i className="fas fa-arrow-down text-warning mr-3" />{' '}
                         46,53%
                       </td>
                     </tr>
@@ -204,7 +205,7 @@ class Index extends React.Component {
                       <td>3,513</td>
                       <td>294</td>
                       <td>
-                        <i className="fas fa-arrow-down text-warning mr-3" />{" "}
+                        <i className="fas fa-arrow-down text-warning mr-3" />{' '}
                         36,49%
                       </td>
                     </tr>
@@ -213,7 +214,7 @@ class Index extends React.Component {
                       <td>2,050</td>
                       <td>147</td>
                       <td>
-                        <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                        <i className="fas fa-arrow-up text-success mr-3" />{' '}
                         50,87%
                       </td>
                     </tr>
@@ -222,7 +223,7 @@ class Index extends React.Component {
                       <td>1,795</td>
                       <td>190</td>
                       <td>
-                        <i className="fas fa-arrow-down text-danger mr-3" />{" "}
+                        <i className="fas fa-arrow-down text-danger mr-3" />{' '}
                         46,53%
                       </td>
                     </tr>

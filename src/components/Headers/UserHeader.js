@@ -15,10 +15,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 
 // reactstrap components
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Container, Row, Col } from 'reactstrap';
 
 class UserHeader extends React.Component {
   render() {
@@ -27,11 +27,11 @@ class UserHeader extends React.Component {
         <div
           className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
           style={{
-            minHeight: "600px",
+            minHeight: '600px',
             backgroundImage:
-              "url(" + require("../../assets/img/theme/profile-cover.jpg") + ")",
-            backgroundSize: "cover",
-            backgroundPosition: "center top"
+              'url(' + require('../../assets/img/theme/profile-cover.jpg') + ')',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top'
           }}
         >
           {/* Mask */}

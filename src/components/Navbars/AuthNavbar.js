@@ -15,8 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -28,7 +28,7 @@ import {
   Container,
   Row,
   Col
-} from "reactstrap";
+} from 'reactstrap';
 
 class AdminNavbar extends React.Component {
   render() {
@@ -40,7 +40,7 @@ class AdminNavbar extends React.Component {
         >
           <Container className="px-4">
             <NavbarBrand to="/" tag={Link}>
-              <img alt="..." src={require("../../assets/img/brand/argon-react-white.png")} />
+              <img alt="..." src={require('../../assets/img/brand/argon-react-white.png')} />
             </NavbarBrand>
             <button className="navbar-toggler" id="navbar-collapse-main">
               <span className="navbar-toggler-icon" />
@@ -52,7 +52,7 @@ class AdminNavbar extends React.Component {
                     <Link to="/">
                       <img
                         alt="..."
-                        src={require("../../assets/img/brand/argon-react.png")}
+                        src={require('../../assets/img/brand/argon-react.png')}
                       />
                     </Link>
                   </Col>

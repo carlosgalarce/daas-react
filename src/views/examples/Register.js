@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 
 // reactstrap components
 import {
@@ -31,7 +31,7 @@ import {
   InputGroup,
   Row,
   Col
-} from "reactstrap";
+} from 'reactstrap';
 
 class Register extends React.Component {
   render() {
@@ -53,7 +53,7 @@ class Register extends React.Component {
                   <span className="btn-inner--icon">
                     <img
                       alt="..."
-                      src={require("../../assets/img/icons/common/github.svg")}
+                      src={require('../../assets/img/icons/common/github.svg')}
                     />
                   </span>
                   <span className="btn-inner--text">Github</span>
@@ -67,7 +67,7 @@ class Register extends React.Component {
                   <span className="btn-inner--icon">
                     <img
                       alt="..."
-                      src={require("../../assets/img/icons/common/google.svg")}
+                      src={require('../../assets/img/icons/common/google.svg')}
                     />
                   </span>
                   <span className="btn-inner--text">Google</span>
@@ -111,7 +111,7 @@ class Register extends React.Component {
                 </FormGroup>
                 <div className="text-muted font-italic">
                   <small>
-                    password strength:{" "}
+                    password strength:{' '}
                     <span className="text-success font-weight-700">strong</span>
                   </small>
                 </div>
@@ -128,7 +128,7 @@ class Register extends React.Component {
                         htmlFor="customCheckRegister"
                       >
                         <span className="text-muted">
-                          I agree with the{" "}
+                          I agree with the{' '}
                           <a href="#pablo" onClick={e => e.preventDefault()}>
                             Privacy Policy
                           </a>
