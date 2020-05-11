@@ -25,6 +25,8 @@ import AuthNavbar from '../components/Navbars/AuthNavbar';
 import AuthFooter from '../components/Footers/AuthFooter';
 
 import routes from '../routes';
+import Login from '../views/examples/Login';
+import Register from '../views/examples/Register';
 
 class Auth extends React.Component {
   componentDidMount() {
@@ -60,8 +62,7 @@ class Auth extends React.Component {
                   <Col lg="5" md="6">
                     <h1 className="text-white">Welcome!</h1>
                     <p className="text-lead text-light">
-                      Use these awesome forms to login or create new account in
-                      your project for free.
+                     
                     </p>
                   </Col>
                 </Row>
@@ -87,7 +88,14 @@ class Auth extends React.Component {
           <Container className="mt--8 pb-5">
             <Row className="justify-content-center">
               <Switch>
-                {this.getRoutes(routes)}
+                <Route
+                  path={'/auth/login'}
+                  component={Login}
+                />
+                <Route
+                  path={'/auth/register'}
+                  component={Register}
+                />
                 <Redirect from="*" to="/auth/login" />
               </Switch>
             </Row>
