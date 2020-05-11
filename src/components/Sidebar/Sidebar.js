@@ -133,7 +133,7 @@ class Sidebar extends React.Component {
                 className="navbar-brand-img"
                 src={logo.imgSrc}
               /> */}
-              Vehicle Management
+              Aclaro
             </NavbarBrand>
           ) : null}
           {/* User */}

@@ -16,9 +16,9 @@
 
 */
 import Index from './views/Index.js';
-import Profile from './views/examples/Profile.js';
-import Maps from './views/examples/Maps.js';
-import Tables from './views/examples/Tables.js';
+// import Profile from './views/examples/Profile.js';
+// import Maps from './views/examples/Maps.js';
+// import Tables from './views/examples/Tables.js';
 import ScheduleService from './views/examples/ScheduleService';
 
 var routes = [
@@ -40,49 +40,49 @@ var routes = [
     path: '/maps',
     name: 'Service History',
     icon: 'fas fa-history text-orange',
-    component: Maps,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/user-profile',
     name: 'Your Offers',
     icon: 'fas fa-coins text-yellow',
-    component: Profile,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/tables',
     name: 'Finance',
     icon: 'fas fa-money-bill text-red',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/personal-info',
     name: 'Personal Info',
     icon: 'ni ni-single-02 text-yellow',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/security',
     name: 'Security',
     icon: 'fas fa-shield-alt text-primary',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/loyalty-plus',
     name: 'Loyalty Plus',
     icon: 'fas fa-plus-circle text-pink',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   },
   {
     path: '/recommended',
     name: 'Recommended For You',
     icon: 'fas fa-info-circle text-red',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   }
 ];
