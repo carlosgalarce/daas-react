@@ -60,32 +60,32 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '',
+    path: '/personal-info',
     name: 'Personal Info',
     icon: 'ni ni-single-02 text-yellow',
-    component: Login,
-    layout: '/auth'
+    component: Tables,
+    layout: '/admin'
   },
   {
-    path: '',
+    path: '/security',
     name: 'Security',
     icon: 'fas fa-shield-alt text-primary',
-    component: Register,
-    layout: '/auth'
+    component: Tables,
+    layout: '/admin'
   },
   {
-    path: '',
+    path: '/loyalty-plus',
     name: 'Loyalty Plus',
     icon: 'fas fa-plus-circle text-pink',
-    component: Register,
-    layout: '/auth'
+    component: Tables,
+    layout: '/admin'
   },
   {
-    path: '',
+    path: '/recommended',
     name: 'Recommended For You',
     icon: 'fas fa-info-circle text-red',
-    component: Register,
-    layout: '/auth'
+    component: Tables,
+    layout: '/admin'
   }
 ];
 export default routes;
