@@ -73,7 +73,7 @@ class Register extends React.Component {
             </CardHeader> */}
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>sign up with credentials</small>
+                <small>Enter your details</small>
               </div>
               <Form role="form">
                 <FormGroup>
@@ -139,7 +139,7 @@ class Register extends React.Component {
                   </Col>
                 </Row>
                 <div className="text-center">
-                  <Button className="mt-4" color="primary" type="button">
+                  <Button onClick={()=>this.props.history.push('/admin/index')} className="mt-4" color="primary" type="button">
                     Create account
                   </Button>
                 </div>

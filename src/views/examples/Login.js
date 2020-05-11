@@ -28,7 +28,6 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Row,
   Col
 } from 'reactstrap';
 
@@ -112,14 +111,14 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button onClick={()=>this.props.history.push('/admin/index')} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>
               </Form>
             </CardBody>
           </Card>
-          <Row className="mt-3">
+          {/* <Row className="mt-3">
             <Col xs="6">
               <a
                 className="text-light"
@@ -138,7 +137,7 @@ class Login extends React.Component {
                 <small>Create new account</small>
               </a>
             </Col>
-          </Row>
+          </Row> */}
         </Col>
       </>
     );
