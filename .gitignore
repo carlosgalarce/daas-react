@@ -3,3 +3,6 @@
 package-lock.json
 yarn.lock
 /build
+firebase.json
+.firebaserc
+.firebase
