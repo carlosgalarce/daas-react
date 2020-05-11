@@ -18,10 +18,10 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // reactstrap components
-import { Container } from 'reactstrap';
+// import { Container } from 'reactstrap';
 // core components
 import AdminNavbar from '../components/Navbars/AdminNavbar';
-import AdminFooter from '../components/Footers/AdminFooter';
+// import AdminFooter from '../components/Footers/AdminFooter';
 import Sidebar from '../components/Sidebar/Sidebar';
 
 import routes from '../routes';
@@ -66,7 +66,7 @@ class Admin extends React.Component {
           {...this.props}
           routes={routes}
           logo={{
-            innerLink: '/admin/index',
+            innerLink: '/index',
             imgSrc: require('../assets/img/brand/argon-react.png'),
             imgAlt: '...'
           }}
@@ -80,9 +80,9 @@ class Admin extends React.Component {
             {this.getRoutes(routes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
-          <Container fluid>
+          {/* <Container fluid>
             <AdminFooter />
-          </Container>
+          </Container> */}
         </div>
       </>
     );
