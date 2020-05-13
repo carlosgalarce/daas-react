@@ -107,7 +107,7 @@ export default function Register() {
     dispatch(AuthActions.register(body));
 
 
-  }, [formValues, notValid, dispatch]);
+  }, [formValues, notValid, dispatch, isError]);
   return (
     <>
       <Col lg="6" md="8">
