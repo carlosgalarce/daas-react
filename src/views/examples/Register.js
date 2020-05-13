@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 
 // reactstrap components
 import {
@@ -27,129 +27,221 @@ import {
   Input,
   InputGroup,
   Row,
-  Col
+  Col,
+  Alert
 } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthActions } from '../../store/ducks/auth-duck';
 
-class Register extends React.Component {
-  render() {
-    return (
-      <>
-        <Col lg="6" md="8">
-          <Card className="bg-secondary shadow border-0">
-            {/* <CardHeader className="bg-transparent pb-5">
-              <div className="text-muted text-center mt-2 mb-4">
-                <small>Sign up with</small>
-              </div>
-              <div className="text-center">
-                <Button
-                  className="btn-neutral btn-icon mr-4"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require('../../assets/img/icons/common/github.svg')}
+export default function Register() {
+  const dispatch = useDispatch();
+  const isError = useSelector(store => store?.auth?.isError);
+  const errorMessage = useSelector(store => store?.auth?.errorMsg);
+  const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNo: '',
+    zipCode: '',
+    notes: '',
+    address: '',
+    city: ''
+
+  });
+  const onSignUpClick = useCallback((e) => {
+    e.preventDefault();
+    if (isError) {
+      dispatch(AuthActions.clearError());
+    }
+    if (notValid.error) {
+      setNotValid({ error: false, type: '', message: '' });
+    }
+    if (!formValues.firstName) {
+      setNotValid({ error: true, type: 'firstName', message: 'Please provide first name' });
+      return;
+    }
+    if (!formValues.lastName) {
+      setNotValid({ error: true, type: 'lastName', message: 'Please provide last name' });
+      return;
+    }
+
+    if (!formValues.email) {
+      setNotValid({ error: true, type: 'email', message: 'Please provide email' });
+      return;
+    }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formValues.email)) {
+      setNotValid({ error: true, type: 'email', message: 'Invalid email' });
+      return;
+    }
+    if (!formValues.phoneNo) {
+      setNotValid({ error: true, type: 'phoneNo', message: 'Please provide phone number' });
+      return;
+    }
+    if (!formValues.address) {
+      setNotValid({ error: true, type: 'address', message: 'Please provide address' });
+      return;
+    }
+    if (!formValues.city) {
+      setNotValid({ error: true, type: 'city', message: 'Please provide city' });
+      return;
+    }
+    if (!formValues.zipCode) {
+      setNotValid({ error: true, type: 'zipCode', message: 'Please provide zip code' });
+      return;
+    }
+    if (!formValues.notes) {
+      setNotValid({ error: true, type: 'notes', message: 'Please provide notes' });
+      return;
+    }
+    let body = {
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      email: formValues.email,
+      phone: formValues.phoneNo,
+      zip: formValues.zipCode,
+      address: formValues.address,
+      city: formValues.city,
+      notes: formValues.notes
+    };
+    dispatch(AuthActions.register(body));
+
+
+  }, [formValues, notValid, dispatch]);
+  return (
+    <>
+      <Col lg="6" md="8">
+        <Card className="bg-secondary shadow border-0">
+          <CardBody className="px-lg-5 py-lg-5">
+            {isError &&
+              <Alert color="danger">
+                {errorMessage}
+              </Alert>
+            }
+            <div className="text-center text-muted mb-4">
+              <small>Enter your details</small>
+            </div>
+            <Form onSubmit={onSignUpClick} >
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="First Name"
+                    type="text"
+                    value={formValues.firstName}
+                    onChange={(e) => setFormValues({ ...formValues, firstName: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'firstName') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Last Name"
+                    type="text"
+                    value={formValues.lastName}
+                    onChange={(e) => setFormValues({ ...formValues, lastName: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'lastName') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    value={formValues.email}
+                    onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'email') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Phone Number"
+                    type="text"
+                    value={formValues.phoneNo}
+                    onChange={(e) => setFormValues({ ...formValues, phoneNo: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'phoneNo') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Address"
+                    type="text"
+                    value={formValues.address}
+                    onChange={(e) => setFormValues({ ...formValues, address: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'address') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="City"
+                    type="text"
+                    value={formValues.city}
+                    onChange={(e) => setFormValues({ ...formValues, city: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'city') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="ZipCode"
+                    type="text"
+                    value={formValues.zipCode}
+                    onChange={(e) => setFormValues({ ...formValues, zipCode: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'zipCode') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Notes"
+                    type="text"
+                    value={formValues.notes}
+                    onChange={(e) => setFormValues({ ...formValues, notes: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'notes') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <Row className="my-4">
+                <Col xs="12">
+                  <div className="custom-control custom-control-alternative custom-checkbox">
+                    <input
+                      className="custom-control-input"
+                      id="customCheckRegister"
+                      type="checkbox"
                     />
-                  </span>
-                  <span className="btn-inner--text">Github</span>
-                </Button>
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require('../../assets/img/icons/common/google.svg')}
-                    />
-                  </span>
-                  <span className="btn-inner--text">Google</span>
-                </Button>
-              </div>
-            </CardHeader> */}
-            <CardBody className="px-lg-5 py-lg-5">
-              <div className="text-center text-muted mb-4">
-                <small>Enter your details</small>
-              </div>
-              <Form role="form">
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="First Name" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="Last Name" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="Email" type="email" autoComplete="new-email"/>
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="Phone Number" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="Address" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="City" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="ZipCode" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <Input placeholder="Notes" type="text" />
-                  </InputGroup>
-                </FormGroup>
-                <Row className="my-4">
-                  <Col xs="12">
-                    <div className="custom-control custom-control-alternative custom-checkbox">
-                      <input
-                        className="custom-control-input"
-                        id="customCheckRegister"
-                        type="checkbox"
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="customCheckRegister"
-                      >
-                        <span className="text-muted">
-                          I agree with the{' '}
-                          <a href="#pablo" onClick={e => e.preventDefault()}>
-                            Privacy Policy
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheckRegister"
+                    >
+                      <span className="text-muted">
+                        I agree with the{' '}
+                        <a href="#pablo" onClick={e => e.preventDefault()}>
+                          Privacy Policy
                           </a>
-                        </span>
-                      </label>
-                    </div>
-                  </Col>
-                </Row>
-                <div className="text-center">
-                  <Button onClick={()=>this.props.history.push('/admin/index')} className="mt-4" color="primary" type="button">
-                    Create account
+                      </span>
+                    </label>
+                  </div>
+                </Col>
+              </Row>
+              <div className="text-center">
+                <Button className="mt-4" color="primary" type="submit">
+                  Create account
                   </Button>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-        </Col>
-      </>
-    );
-  }
+              </div>
+            </Form>
+          </CardBody>
+        </Card>
+      </Col>
+    </>
+  );
 }
 
-export default Register;

@@ -97,7 +97,7 @@ class AdminNavbar extends React.Component {
                     <span>Support</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem to="/auth/login" tag={Link}>
+                  <DropdownItem to="/auth/logout" tag={Link}  >
                     <i className="ni ni-user-run" />
                     <span>Logout</span>
                   </DropdownItem>

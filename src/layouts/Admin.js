@@ -25,8 +25,18 @@ import AdminNavbar from '../components/Navbars/AdminNavbar';
 import Sidebar from '../components/Sidebar/Sidebar';
 
 import routes from '../routes';
+import { connect } from 'react-redux';
+import { AuthActions } from '../store/ducks/auth-duck';
+import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
 
 class Admin extends React.Component {
+
+  componentDidMount() {
+    const userFromStorage = AuthStorage.getUser();
+    if (!this.props.user && userFromStorage) {
+      this.props.setUser(userFromStorage);
+    }
+  }
   componentDidUpdate(/* e */) {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -88,5 +98,15 @@ class Admin extends React.Component {
     );
   }
 }
+const mapStateToProps = (store) => {
+  return {
+    user: store?.auth?.user
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (user) => dispatch(AuthActions.setUser(user))
+  };
+};
 
-export default Admin;
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);
