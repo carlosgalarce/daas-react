@@ -27,7 +27,7 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import routes from '../routes';
 
 class Admin extends React.Component {
-  componentDidUpdate(e) {
+  componentDidUpdate(/* e */) {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     this.refs.mainContent.scrollTop = 0;
@@ -47,7 +47,7 @@ class Admin extends React.Component {
       }
     });
   };
-  getBrandText = path => {
+  getBrandText = (/* path */) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(

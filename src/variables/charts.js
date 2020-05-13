@@ -115,7 +115,7 @@ Chart.elements.Rectangle.prototype.draw = function() {
     let x = corners[1][0];
     let y = corners[1][1];
     // eslint-disable-next-line
-    var radius: any = cornerRadius;
+    var radius/* : any */ = cornerRadius;
 
     // Fix radius being too large
     if (radius > height / 2) {
@@ -338,7 +338,7 @@ let chartExample1 = {
       }
     }
   },
-  data1: canvas => {
+  data1: (/* canvas */) => {
     return {
       labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
@@ -349,7 +349,7 @@ let chartExample1 = {
       ]
     };
   },
-  data2: canvas => {
+  data2: (/* canvas */) => {
     return {
       labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
