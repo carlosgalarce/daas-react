@@ -20,6 +20,7 @@ export class AuthEpics {
                 );
             })
                 , catchError((err) => {
+                    window.scrollTo(0, 0);
                     return of({ type: AuthActionTypes.REGISTER_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
                 }));
 

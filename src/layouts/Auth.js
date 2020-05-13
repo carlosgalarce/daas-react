@@ -25,12 +25,12 @@ import AuthNavbar from '../components/Navbars/AuthNavbar';
 // import AuthFooter from '../components/Footers/AuthFooter';
 
 // import routes from '../routes';
-import Login from '../views/examples/Login';
-import Register from '../views/examples/Register';
+import Login from '../views/AuthPages/Login';
+import Register from '../views/AuthPages/Register';
 import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
 import { useSelector, useDispatch } from 'react-redux';
 import { AuthActions } from '../store/ducks/auth-duck';
-import Logout from '../views/examples/Logout';
+import Logout from '../views/AuthPages/Logout';
 
 function Auth({ history }) {
   const dispatch = useDispatch();

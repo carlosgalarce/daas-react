@@ -44,9 +44,9 @@ import {
   parseOptions,
   // chartExample1,
   // chartExample2
-} from '../variables/charts';
+} from '../../variables/charts';
 
-import Header from '../components/Headers/Header';
+import Header from '../../components/Headers/Header';
 
 class Index extends React.Component {
   constructor(props){

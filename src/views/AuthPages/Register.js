@@ -37,6 +37,7 @@ export default function Register() {
   const dispatch = useDispatch();
   const isError = useSelector(store => store?.auth?.isError);
   const errorMessage = useSelector(store => store?.auth?.errorMsg);
+  const isProgress = useSelector(store => store?.auth?.isProgress);
   const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   const [formValues, setFormValues] = useState({
     firstName: '',
@@ -218,7 +219,7 @@ export default function Register() {
                       id="customCheckRegister"
                       type="checkbox"
                     />
-                    <label
+                    {/* <label
                       className="custom-control-label"
                       htmlFor="customCheckRegister"
                     >
@@ -228,14 +229,16 @@ export default function Register() {
                           Privacy Policy
                           </a>
                       </span>
-                    </label>
+                    </label> */}
                   </div>
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="submit">
-                  Create account
-                  </Button>
+                {isProgress ?
+                  <div className="spinner-border" ></div>
+                  : <Button className="mt-4" color="primary" type="submit">
+                    Create account
+                  </Button>}
               </div>
             </Form>
           </CardBody>
