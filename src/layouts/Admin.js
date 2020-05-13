@@ -28,6 +28,7 @@ import routes from '../routes';
 import { connect } from 'react-redux';
 import { AuthActions } from '../store/ducks/auth-duck';
 import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
+import { SettingsActions } from '../store/ducks/settings-duck';
 
 class Admin extends React.Component {
 
@@ -36,6 +37,7 @@ class Admin extends React.Component {
     if (!this.props.user && userFromStorage) {
       this.props.setUser(userFromStorage);
     }
+    this.props.getSettings();
   }
   componentDidUpdate(/* e */) {
     document.documentElement.scrollTop = 0;
@@ -105,7 +107,8 @@ const mapStateToProps = (store) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUser: (user) => dispatch(AuthActions.setUser(user))
+    setUser: (user) => dispatch(AuthActions.setUser(user)),
+    getSettings: () => dispatch(SettingsActions.getSettings())
   };
 };
 
