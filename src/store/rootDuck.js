@@ -13,7 +13,7 @@ export const rootReducer = (state, action) => {
 };
 export const rootEpic = combineEpics(
   // more epics functions go here
-  auth.AuthEpics.login,
+  auth.AuthEpics.register,
 
 
 

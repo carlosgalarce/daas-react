@@ -8,6 +8,12 @@ export class AuthActions {
             payload: { body }
         };
     }
+    static register(body) {
+        return {
+            type: AuthActionTypes.REGISTER_PROG,
+            payload: { body }
+        };
+    }
     static setUser(user) {
         return {
             type: AuthActionTypes.SET_USER,
@@ -24,22 +30,6 @@ export class AuthActions {
             type: AuthActionTypes.CLEAR_ERROR
         };
     }
-    static getProfile() {
-        return {
-            type: AuthActionTypes.GET_PROFILE_PROG
-        };
-    }
-    static updateProfile(body) {
-        return {
-            type: AuthActionTypes.UPDATE_PROFILE_PROG,
-            payload: { body }
-        };
-    }
-    static clearSuccess() {
-        return {
-            type: AuthActionTypes.CLEAR_SUCCESS,
 
-        };
-    }
 
 }

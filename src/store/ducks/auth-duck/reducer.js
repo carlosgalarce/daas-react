@@ -20,25 +20,16 @@ export function AuthReducer(state = initialAuthState, action) {
 
 
 
-    case AuthActionTypes.GET_PROFILE_PROG:
+    case AuthActionTypes.REGISTER_PROG:
       return { ...state, isProgress: true };
 
-    case AuthActionTypes.GET_PROFILE_SUCC:
+    case AuthActionTypes.REGISTER_SUCC:
       return { ...state, isProgress: false, user: action.payload.user };
 
-    case AuthActionTypes.GET_PROFILE_FAIL:
+    case AuthActionTypes.REGISTER_FAIL:
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
-
-    case AuthActionTypes.UPDATE_PROFILE_PROG:
-      return { ...state, isProgress: true };
-
-    case AuthActionTypes.UPDATE_PROFILE_SUCC:
-      return { ...state, isProgress: false, user: action.payload.user, profileUpdateSucc: true };
-
-    case AuthActionTypes.UPDATE_PROFILE_FAIL:
-      return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
     case AuthActionTypes.CLEAR_SUCCESS:
       return { ...state, profileUpdateSucc: false };
@@ -46,8 +37,6 @@ export function AuthReducer(state = initialAuthState, action) {
     case AuthActionTypes.SET_USER:
       return { ...state, user: action.payload.user };
 
-    case AuthActionTypes.CLEAR_ERROR:
-      return { ...state, isError: false, errorMsg: '', errorStatus: 0, };
     default:
       return state;
   }
