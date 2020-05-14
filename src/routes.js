@@ -20,6 +20,7 @@ import Index from './views/AppPages/Index';
 // import Maps from './views/examples/Maps.js';
 // import Tables from './views/examples/Tables.js';
 import ScheduleService from './views/AppPages/ScheduleService';
+import Profile from './views/AppPages/Profile';
 
 var routes = [
   {
@@ -44,7 +45,7 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/user-profile',
+    path: '/your-offer',
     name: 'Your Offers',
     icon: 'fas fa-coins text-yellow',
     component: Index,
@@ -61,7 +62,7 @@ var routes = [
     path: '/personal-info',
     name: 'Personal Info',
     icon: 'ni ni-single-02 text-yellow',
-    component: Index,
+    component: Profile,
     layout: '/admin'
   },
   {
