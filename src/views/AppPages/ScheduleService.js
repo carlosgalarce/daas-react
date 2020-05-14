@@ -25,6 +25,10 @@ import {
   CardBody,
   Container,
   Row,
+  Col,
+  FormGroup,
+  Label,
+  Input,
   // Col,
   // UncontrolledTooltip
 } from 'reactstrap';
@@ -47,6 +51,64 @@ class ScheduleService extends React.Component {
                   <h3 className=" mb-0">Schedule a Service</h3>
                 </CardHeader>
                 <CardBody>
+                  <Row className="justify-content-center" >
+                    <Col md={'8'} >
+                      <Row>
+                        <Col md={'6'} >
+                          <FormGroup>
+                            <Label className="form-control-label" for="provider">Select Provider</Label>
+                            <Input className="form-control-alternative" type="select" id="provider">
+                              <option>Select Provider</option>
+                            </Input>
+                          </FormGroup>
+                        </Col>
+                        <Col md={'6'} >
+                          <FormGroup>
+                            <Label className="form-control-label" for="service">Select Service Recommended</Label>
+                            <Input className="form-control-alternative" type="select" id="service">
+                              <option>Select Service</option>
+                            </Input>
+                          </FormGroup>
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col md={'6'} >
+                          <FormGroup>
+
+                            <Label className="form-control-label" for="start-date">Select Start Date </Label>
+                            <Input className="form-control-alternative" type="date" id="start-date" />
+                          </FormGroup>
+                        </Col>
+                        <Col md={'6'} >
+
+                          <FormGroup>
+
+                            <Label className="form-control-label" for="end-date">Select End Date</Label>
+                            <Input className="form-control-alternative" type="date" id="end-date" />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col md={'6'} >
+                          <FormGroup>
+                            <Label className="form-control-label" for="available-slots">Available Slots</Label>
+                            <Input className="form-control-alternative" type="select" id="available-slots">
+                              <option>Select Time Slot</option>
+                            </Input>
+                          </FormGroup>
+                        </Col>
+                        <Col md={'6'} >
+                          <FormGroup>
+
+                            <Label className="form-control-label" for="notes">Notes</Label>
+                            <Input className="form-control-alternative" type={'textarea'} id="notes" />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
                 </CardBody>
               </Card>
             </div>
