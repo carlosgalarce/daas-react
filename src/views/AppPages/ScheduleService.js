@@ -34,89 +34,93 @@ import {
 } from 'reactstrap';
 // core components
 import Header from '../../components/Headers/Header';
+import MyCarousel from '../../components/Carousel/MyCarousel';
 
-class ScheduleService extends React.Component {
-  state = {};
-  render() {
-    return (
-      <>
-        <Header />
-        {/* Page content */}
-        <Container className=" mt--7" fluid>
-          {/* Table */}
-          <Row>
-            <div className=" col">
-              <Card className=" shadow">
-                <CardHeader className=" bg-transparent">
-                  <h3 className=" mb-0">Schedule a Service</h3>
-                </CardHeader>
-                <CardBody>
-                  <Row className="justify-content-center" >
-                    <Col md={'8'} >
-                      <Row>
-                        <Col md={'6'} >
-                          <FormGroup>
-                            <Label className="form-control-label" for="provider">Select Provider</Label>
-                            <Input className="form-control-alternative" type="select" id="provider">
-                              <option>Select Provider</option>
-                            </Input>
-                          </FormGroup>
-                        </Col>
-                        <Col md={'6'} >
-                          <FormGroup>
-                            <Label className="form-control-label" for="service">Select Service Recommended</Label>
-                            <Input className="form-control-alternative" type="select" id="service">
-                              <option>Select Service</option>
-                            </Input>
-                          </FormGroup>
-                        </Col>
-                      </Row>
+function ScheduleService() {
+  return (
+    <>
+      <Header />
+      {/* Page content */}
+      <Container className=" mt--7" fluid>
+        {/* Table */}
+        <Row>
+          <div className=" col">
+            <Card className=" shadow">
+              <CardHeader className=" bg-transparent">
+                <h3 className=" mb-0">Schedule a Service</h3>
+              </CardHeader>
+              <CardBody>
+                <Row className="mb-5"  >
+                  <Col md={'12'} >
+                    <MyCarousel />
+                  </Col>
+                </Row>
+                <Row className="justify-content-center" >
+                  <Col md={'8'} >
+                    <Row>
+                      <Col md={'6'} >
+                        <FormGroup>
+                          <Label className="form-control-label" for="provider">Select Provider</Label>
+                          <Input className="form-control-alternative" type="select" id="provider">
+                            <option>Select Provider</option>
+                          </Input>
+                        </FormGroup>
+                      </Col>
+                      <Col md={'6'} >
+                        <FormGroup>
+                          <Label className="form-control-label" for="service">Select Service Recommended</Label>
+                          <Input className="form-control-alternative" type="select" id="service">
+                            <option>Select Service</option>
+                          </Input>
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
-                      <Row>
-                        <Col md={'6'} >
-                          <FormGroup>
+                    <Row>
+                      <Col md={'6'} >
+                        <FormGroup>
 
-                            <Label className="form-control-label" for="start-date">Select Start Date </Label>
-                            <Input className="form-control-alternative" type="date" id="start-date" />
-                          </FormGroup>
-                        </Col>
-                        <Col md={'6'} >
+                          <Label className="form-control-label" for="start-date">Select Start Date </Label>
+                          <Input className="form-control-alternative" type="date" id="start-date" />
+                        </FormGroup>
+                      </Col>
+                      <Col md={'6'} >
 
-                          <FormGroup>
+                        <FormGroup>
 
-                            <Label className="form-control-label" for="end-date">Select End Date</Label>
-                            <Input className="form-control-alternative" type="date" id="end-date" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
+                          <Label className="form-control-label" for="end-date">Select End Date</Label>
+                          <Input className="form-control-alternative" type="date" id="end-date" />
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
-                      <Row>
-                        <Col md={'6'} >
-                          <FormGroup>
-                            <Label className="form-control-label" for="available-slots">Available Slots</Label>
-                            <Input className="form-control-alternative" type="select" id="available-slots">
-                              <option>Select Time Slot</option>
-                            </Input>
-                          </FormGroup>
-                        </Col>
-                        <Col md={'6'} >
-                          <FormGroup>
+                    <Row>
+                      <Col md={'6'} >
+                        <FormGroup>
+                          <Label className="form-control-label" for="available-slots">Available Slots</Label>
+                          <Input className="form-control-alternative" type="select" id="available-slots">
+                            <option>Select Time Slot</option>
+                          </Input>
+                        </FormGroup>
+                      </Col>
+                      <Col md={'6'} >
+                        <FormGroup>
 
-                            <Label className="form-control-label" for="notes">Notes</Label>
-                            <Input className="form-control-alternative" type={'textarea'} id="notes" />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </div>
-          </Row>
-        </Container>
-      </>
-    );
-  }
+                          <Label className="form-control-label" for="notes">Notes</Label>
+                          <Input className="form-control-alternative" type={'textarea'} id="notes" />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
+          </div>
+        </Row>
+      </Container>
+    </>
+  );
 }
+
 
 export default ScheduleService;
