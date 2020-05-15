@@ -1,0 +1,21 @@
+import { ScheduleServiceActionTypes } from './actions-types';
+
+export class ScheduleServiceActions {
+
+    static getServices() {
+        return {
+            type: ScheduleServiceActionTypes.GET_SERVICES_PROG,
+        };
+    }
+    static getProviders() {
+        return {
+            type: ScheduleServiceActionTypes.GET_PROVIDERS_PROG,
+        };
+    }
+    static getAvailabilities(providerId, serviceId, date) {
+        return {
+            type: ScheduleServiceActionTypes.GET_AVAILABILITIES_PROG,
+            payload: { providerId, serviceId, date }
+        };
+    }
+}
