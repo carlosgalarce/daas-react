@@ -4,7 +4,8 @@ const initialAuthState = {
   isError: false,
   errorMsg: '',
   errorStatus: 0,
-  config: {}
+  config: {},
+  customerInfo: {}
 };
 export function SettingsReducer(state = initialAuthState, action) {
   switch (action.type) {
@@ -18,7 +19,14 @@ export function SettingsReducer(state = initialAuthState, action) {
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
-
+      case SettingsActionTypes.GET_CUSTOMER_INFO_PROG:
+        return { ...state, isProgress: true };
+  
+      case SettingsActionTypes.GET_CUSTOMER_INFO_SUCC:
+        return { ...state, isProgress: false, customerInfo: action.payload.customerInfo };
+  
+      case SettingsActionTypes.GET_CUSTOMER_INFO_FAIL:
+        return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
     default:

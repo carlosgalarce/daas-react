@@ -5,3 +5,4 @@ export const HEADERS = {
     'Content-Type': 'application/json',
     'Authorization': 'Basic Y2FybG9zLmdhbGFyY2U6RWRxQ3lOcE1pWXlQQlE0QkhacTNFUXB6'
 };
+export const JSON_TOKEN = 'abc%40%23%24%25%5E123456789RTRTRRVBV';

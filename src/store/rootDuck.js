@@ -18,7 +18,8 @@ export const rootEpic = combineEpics(
   auth.AuthEpics.register,
 
 
-  settings.SettingsEpics.getSettings
+  settings.SettingsEpics.getSettings,
+  settings.SettingsEpics.getCustomerInfo,
 
 
 
