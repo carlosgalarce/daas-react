@@ -1,12 +1,10 @@
 import { ajax } from 'rxjs/ajax';
-
-import { API_URL } from './config';
 import { AuthStorage } from '../ducks/auth-duck/auth-storage';
 export class HttpService {
 
-    static get(url, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}`}) {
+    static get(url, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}` }) {
         return ajax({
-            url: `${API_URL}${url}`,
+            url,
             headers,
             method: 'GET',
             async: true,
@@ -16,9 +14,9 @@ export class HttpService {
         });
     } // get
 
-    static post(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}`}) {
+    static post(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}` }) {
         return ajax({
-            url: `${API_URL}${url}`,
+            url,
             method: 'POST',
             body,
             headers,
@@ -28,9 +26,9 @@ export class HttpService {
             createXHR: () => new XMLHttpRequest()
         });
     } // post
-    static put(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}`}) {
+    static put(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}` }) {
         return ajax({
-            url: `${API_URL}${url}`,
+            url,
             method: 'PUT',
             body,
             headers,
@@ -41,9 +39,9 @@ export class HttpService {
         });
     } // put
 
-    static delete(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}`}) {
+    static delete(url, body, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AuthStorage.getToken()}` }) {
         return ajax({
-            url: `${API_URL}/${url}`,
+            url,
             method: 'DELETE',
             body,
             headers,
