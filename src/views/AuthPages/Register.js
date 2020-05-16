@@ -28,7 +28,6 @@ import {
   InputGroup,
   Row,
   Col,
-  Alert
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthActions } from '../../store/ducks/auth-duck';
@@ -36,7 +35,6 @@ import { AuthActions } from '../../store/ducks/auth-duck';
 export default function Register() {
   const dispatch = useDispatch();
   const isError = useSelector(store => store?.auth?.isError);
-  const errorMessage = useSelector(store => store?.auth?.errorMsg);
   const isProgress = useSelector(store => store?.auth?.isProgress);
   const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   const [formValues, setFormValues] = useState({
@@ -114,11 +112,6 @@ export default function Register() {
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
-            {isError &&
-              <Alert color="danger">
-                {errorMessage}
-              </Alert>
-            }
             <div className="text-center text-muted mb-4">
               <small>Enter your details</small>
             </div>
