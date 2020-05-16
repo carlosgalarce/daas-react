@@ -39,6 +39,7 @@ import MyCarousel from '../../components/Carousel/MyCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScheduleServiceActions } from '../../store/ducks/schedule-service-duck/actions';
 import moment from 'moment';
+import ReactDatePicker from 'react-datepicker';
 
 function ScheduleService() {
 
@@ -69,8 +70,8 @@ function ScheduleService() {
   const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   useEffect(() => {
     if (formValues.serviceId && formValues.providerId && formValues.selectedDate) {
-      // let todayDate = moment(new Date()).format('YYYY-MM-DD');
-      dispatch(ScheduleServiceActions.getAvailabilities(formValues.providerId, formValues.serviceId, formValues.selectedDate));
+      let selectedDate = moment(formValues.selectedDate).format('YYYY-MM-DD');
+      dispatch(ScheduleServiceActions.getAvailabilities(formValues.providerId, formValues.serviceId, selectedDate));
     }
 
   }, [formValues.serviceId, formValues.providerId, formValues.selectedDate, dispatch]);
@@ -119,8 +120,9 @@ function ScheduleService() {
       setNotValid({ error: true, type: 'availableSlot', message: 'Please available slot' });
       return;
     }
-    let start = formValues.selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').format('HH:mm:ss');
-    let end = formValues.selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').add(1, 'hour').format('HH:mm:ss');
+    let selectedDate = moment(formValues.selectedDate).format('YYYY-MM-DD');
+    let start = selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').format('HH:mm:ss');
+    let end = selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').add(1, 'hour').format('HH:mm:ss');
     let body = {
       book: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       start,
@@ -133,7 +135,6 @@ function ScheduleService() {
     };
     dispatch(ScheduleServiceActions.bookAppointment(body));
   }, [formValues, notValid, user, dispatch]);
-
 
 
   return (
@@ -215,14 +216,13 @@ function ScheduleService() {
                             <Col md={'6'} >
                               <FormGroup>
 
-                                <Label className="form-control-label" for="start-date">Select Start Date </Label>
-                                <Input
-                                  className="form-control-alternative"
-                                  type="date"
-                                  id="start-date"
-                                  minLength={new Date()}
-                                  value={formValues.selectedDate}
-                                  onChange={(e) => setFormValues({ ...formValues, selectedDate: e.target.value })}
+                                <Label className="form-control-label" for="start-date">Select Appointment Date </Label>
+                                <ReactDatePicker
+                                  selected={formValues.selectedDate}
+                                  onChange={date => setFormValues({ ...formValues, selectedDate: date })}
+                                  minDate={new Date()}
+                                  placeholderText="Select date"
+                                  className="form-control form-control-alternative"
                                 />
                                 {(notValid.error && notValid.type === 'selectedDate') && <label className="text-danger" > {notValid.message} </label>}
 
