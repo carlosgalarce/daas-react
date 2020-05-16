@@ -2,6 +2,7 @@ import { of } from 'rxjs';
 import { ofType, } from 'redux-observable';
 import { switchMap, pluck, catchError, flatMap } from 'rxjs/operators';
 import { ScheduleServiceActionTypes } from './actions-types';
+import { toast } from 'react-toastify';
 
 export class ScheduleServiceEpics {
     static getServices(action$, state$, { ajaxGet, SCHEDULE_API_URL, HEADERS }) {
@@ -64,7 +65,7 @@ export class ScheduleServiceEpics {
     static bookAppointment(action$, state$, { ajaxPost, SCHEDULE_API_URL, HEADERS }) {
         return action$.pipe(ofType(ScheduleServiceActionTypes.BOOK_APPOINTMENT_PROG), switchMap(({ payload }) => {
             return ajaxPost(`${SCHEDULE_API_URL}/appointments`, payload.body, HEADERS).pipe(pluck('response'), flatMap(obj => {
-
+                toast.success('Appointment booked successfully', { autoClose: true });
                 return of(
                     {
                         type: ScheduleServiceActionTypes.BOOK_APPOINTMENT_SUCC,

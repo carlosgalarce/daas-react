@@ -20,6 +20,7 @@ import ReactDOM from 'react-dom';
 
 import './assets/plugins/nucleo/css/nucleo.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './assets/scss/argon-dashboard-react.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import store from './store/store';
