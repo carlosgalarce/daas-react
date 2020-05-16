@@ -18,4 +18,15 @@ export class ScheduleServiceActions {
             payload: { providerId, serviceId, date }
         };
     }
+    static bookAppointment(body) {
+        return {
+            type: ScheduleServiceActionTypes.BOOK_APPOINTMENT_PROG,
+            payload: { body }
+        };
+    }
+    static clearAppointment() {
+        return {
+            type: ScheduleServiceActionTypes.CLEAR_APPOINTMENT
+        };
+    }
 }

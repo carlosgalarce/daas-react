@@ -27,6 +27,7 @@ export const rootEpic = combineEpics(
   scheduleservice.ScheduleServiceEpics.getServices,
   scheduleservice.ScheduleServiceEpics.getProviders,
   scheduleservice.ScheduleServiceEpics.getAvailabilities,
+  scheduleservice.ScheduleServiceEpics.bookAppointment,
 
 
 

@@ -3,12 +3,14 @@ const initialAuthState = {
   isProgressServices: false,
   isProgressProviders: false,
   isProgressAvailabilities: false,
+  isProgressBookAppointment: false,
   isError: false,
   errorMsg: '',
   errorStatus: 0,
   services: [],
   providers: [],
-  availabilties: []
+  availabilties: [],
+  appointment: null
 };
 export function ScheduleServiceReducer(state = initialAuthState, action) {
   switch (action.type) {
@@ -42,6 +44,22 @@ export function ScheduleServiceReducer(state = initialAuthState, action) {
 
     case ScheduleServiceActionTypes.GET_AVAILABILITIES_FAIL:
       return { ...state, isProgressAvailabilities: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
+
+
+
+    case ScheduleServiceActionTypes.BOOK_APPOINTMENT_PROG:
+      return { ...state, isProgressBookAppointment: true };
+
+    case ScheduleServiceActionTypes.BOOK_APPOINTMENT_SUCC:
+      return { ...state, isProgressBookAppointment: false, appointment: action.payload.appointment };
+
+    case ScheduleServiceActionTypes.BOOK_APPOINTMENT_FAIL:
+      return { ...state, isProgressBookAppointment: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
+
+
+    case ScheduleServiceActionTypes.CLEAR_APPOINTMENT:
+      return { ...state, appointment: null };
+
     default:
       return state;
   }

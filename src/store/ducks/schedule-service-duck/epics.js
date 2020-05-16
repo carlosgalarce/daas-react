@@ -17,7 +17,6 @@ export class ScheduleServiceEpics {
                 );
             })
                 , catchError((err) => {
-                    window.scrollTo(0, 0);
                     return of({ type: ScheduleServiceActionTypes.GET_SERVICES_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
                 }));
 
@@ -37,7 +36,6 @@ export class ScheduleServiceEpics {
                 );
             })
                 , catchError((err) => {
-                    window.scrollTo(0, 0);
                     return of({ type: ScheduleServiceActionTypes.GET_PROVIDERS_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
                 }));
 
@@ -57,8 +55,26 @@ export class ScheduleServiceEpics {
                 );
             })
                 , catchError((err) => {
-                    window.scrollTo(0, 0);
                     return of({ type: ScheduleServiceActionTypes.GET_AVAILABILITIES_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
+                }));
+
+        }));
+    }
+
+    static bookAppointment(action$, state$, { ajaxPost, SCHEDULE_API_URL, HEADERS }) {
+        return action$.pipe(ofType(ScheduleServiceActionTypes.BOOK_APPOINTMENT_PROG), switchMap(({ payload }) => {
+            return ajaxPost(`${SCHEDULE_API_URL}/appointments`, payload.body, HEADERS).pipe(pluck('response'), flatMap(obj => {
+
+                return of(
+                    {
+                        type: ScheduleServiceActionTypes.BOOK_APPOINTMENT_SUCC,
+                        payload: { appointment: obj }
+                    },
+
+                );
+            })
+                , catchError((err) => {
+                    return of({ type: ScheduleServiceActionTypes.BOOK_APPOINTMENT_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
                 }));
 
         }));

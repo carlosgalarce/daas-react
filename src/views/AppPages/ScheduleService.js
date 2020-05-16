@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 // react component that copies the given text inside your clipboard
 import { /* CopyToClipboard */ } from 'react-copy-to-clipboard';
 // reactstrap components
@@ -38,7 +38,7 @@ import Header from '../../components/Headers/Header';
 import MyCarousel from '../../components/Carousel/MyCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScheduleServiceActions } from '../../store/ducks/schedule-service-duck/actions';
-// import moment from 'moment';
+import moment from 'moment';
 
 function ScheduleService() {
 
@@ -54,7 +54,10 @@ function ScheduleService() {
   const isProgressAvailabilities = useSelector(store => store?.schedule?.isProgressAvailabilities);
   const isProgressServices = useSelector(store => store?.schedule?.isProgressServices);
   const isProgressProviders = useSelector(store => store?.schedule?.isProgressProviders);
+  const isProgressBookAppointment = useSelector(store => store?.schedule?.isProgressBookAppointment);
   const vehicles = useSelector(store => store?.settings?.customerInfo?.Vehicles);
+  const user = useSelector(store => store?.auth?.user);
+  const appointment = useSelector(store => store?.schedule?.appointment);
   const [formValues, setFormValues] = useState({
     providerId: '',
     serviceId: '',
@@ -63,6 +66,7 @@ function ScheduleService() {
     notes: ''
   });
   const [filteredProviders, setFilteredProviders] = useState([]);
+  const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   useEffect(() => {
     if (formValues.serviceId && formValues.providerId && formValues.selectedDate) {
       // let todayDate = moment(new Date()).format('YYYY-MM-DD');
@@ -78,6 +82,60 @@ function ScheduleService() {
       setFilteredProviders(filteredProviders);
     }
   }, [formValues.serviceId, providers]);
+
+  useEffect(() => {
+    if (appointment) {
+      setFormValues({
+        providerId: '',
+        serviceId: '',
+        selectedDate: '',
+        availableSlot: '',
+        notes: ''
+      });
+      dispatch(ScheduleServiceActions.clearAppointment());
+    }
+  }, [appointment, dispatch]);
+
+
+  const onBookClick = useCallback(() => {
+    if (notValid.error) {
+      setNotValid({ error: false, type: '', message: '' });
+    }
+    if (!formValues.serviceId) {
+      setNotValid({ error: true, type: 'serviceId', message: 'Please select service' });
+      return;
+    }
+    if (!formValues.providerId) {
+      setNotValid({ error: true, type: 'providerId', message: 'Please select provider' });
+      return;
+    }
+
+    if (!formValues.selectedDate) {
+      setNotValid({ error: true, type: 'selectedDate', message: 'Please select date' });
+      return;
+    }
+
+    if (!formValues.availableSlot) {
+      setNotValid({ error: true, type: 'availableSlot', message: 'Please available slot' });
+      return;
+    }
+    let start = formValues.selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').format('HH:mm:ss');
+    let end = formValues.selectedDate + ' ' + moment(formValues.availableSlot, 'HH:mm').add(1, 'hour').format('HH:mm:ss');
+    let body = {
+      book: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      start,
+      end,
+      notes: formValues.notes,
+      customerId: user?.id,
+      providerId: formValues.providerId,
+      serviceId: formValues.serviceId,
+      googleCalendarId: null
+    };
+    dispatch(ScheduleServiceActions.bookAppointment(body));
+  }, [formValues, notValid, user, dispatch]);
+
+
+
   return (
     <>
       <Header />
@@ -125,6 +183,8 @@ function ScheduleService() {
                                     })
                                   }
                                 </Input>
+                                {(notValid.error && notValid.type === 'serviceId') && <label className="text-danger" > {notValid.message} </label>}
+
                               </FormGroup>
                             </Col>
                             <Col md={'6'} >
@@ -145,6 +205,8 @@ function ScheduleService() {
                                     })
                                   }
                                 </Input>
+                                {(notValid.error && notValid.type === 'providerId') && <label className="text-danger" > {notValid.message} </label>}
+
                               </FormGroup>
                             </Col>
                           </Row>
@@ -158,9 +220,12 @@ function ScheduleService() {
                                   className="form-control-alternative"
                                   type="date"
                                   id="start-date"
+                                  minLength={new Date()}
                                   value={formValues.selectedDate}
                                   onChange={(e) => setFormValues({ ...formValues, selectedDate: e.target.value })}
                                 />
+                                {(notValid.error && notValid.type === 'selectedDate') && <label className="text-danger" > {notValid.message} </label>}
+
                               </FormGroup>
                             </Col>
                             <Col md={'6'} >
@@ -185,6 +250,8 @@ function ScheduleService() {
                                     })
                                   }
                                 </Input>
+                                {(notValid.error && notValid.type === 'availableSlot') && <label className="text-danger" > {notValid.message} </label>}
+
                               </FormGroup>
                             </Col>
                           </Row>
@@ -200,7 +267,11 @@ function ScheduleService() {
                           </Row>
                           <Row>
                             <Col md={'12'} >
-                              <Button color="primary" > Book Appointment</Button>
+                              {isProgressBookAppointment
+                                ?
+                                <div className="spinner-border " ></div>
+                                :
+                                <Button color="primary" onClick={onBookClick} > Book Appointment</Button>}
                             </Col>
                           </Row>
                         </Col>
