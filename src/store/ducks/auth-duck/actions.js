@@ -1,4 +1,5 @@
 import { AuthActionTypes } from './actions-types';
+import { CLIENT_ID, AUDIENCE, GRANT_TYPE, CLIENT_SECRET } from '../../services/config';
 
 export class AuthActions {
 
@@ -8,9 +9,24 @@ export class AuthActions {
             payload: { body }
         };
     }
-    static register(body) {
+
+    static getAuthToken() {
+
+        let body = { client_id: CLIENT_ID, client_secret: CLIENT_SECRET, audience: AUDIENCE, grant_type: GRANT_TYPE };
         return {
-            type: AuthActionTypes.REGISTER_PROG,
+            type: AuthActionTypes.GET_AUTH_TOKEN_PROG,
+            payload: { body }
+        };
+    }
+    static registerUser(body) {
+        return {
+            type: AuthActionTypes.REGISTER_USER_PROG,
+            payload: { body }
+        };
+    }
+    static registerCustomer(body) {
+        return {
+            type: AuthActionTypes.REGISTER_CUSTOMER_PROG,
             payload: { body }
         };
     }
@@ -28,6 +44,11 @@ export class AuthActions {
     static clearError() {
         return {
             type: AuthActionTypes.CLEAR_ERROR
+        };
+    }
+    static clearRegisterUserSucc() {
+        return {
+            type: AuthActionTypes.CLEAR_REGISTER_USER_SUCC
         };
     }
 

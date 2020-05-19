@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 // reactstrap components
 import {
@@ -35,6 +35,7 @@ import { AuthActions } from '../../store/ducks/auth-duck';
 export default function Register() {
   const dispatch = useDispatch();
   const isError = useSelector(store => store?.auth?.isError);
+  const registerUserSucc = useSelector(store => store?.auth?.registerUserSucc);
   const isProgress = useSelector(store => store?.auth?.isProgress);
   const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   const [formValues, setFormValues] = useState({
@@ -45,9 +46,31 @@ export default function Register() {
     zipCode: '',
     notes: '',
     address: '',
-    city: ''
+    city: '',
+    password: ''
 
   });
+  useEffect(() => {
+    dispatch(AuthActions.getAuthToken());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (registerUserSucc) {
+      dispatch(AuthActions.clearRegisterUserSucc());
+      let body = {
+        firstName: formValues.firstName,
+        lastName: formValues.lastName,
+        email: formValues.email,
+        phone: formValues.phoneNo,
+        zip: formValues.zipCode,
+        address: formValues.address,
+        city: formValues.city,
+        notes: formValues.notes
+      };
+      dispatch(AuthActions.registerCustomer(body));
+
+    }
+  }, [registerUserSucc, dispatch, formValues]);
   const onSignUpClick = useCallback((e) => {
     e.preventDefault();
     if (isError) {
@@ -73,6 +96,14 @@ export default function Register() {
       setNotValid({ error: true, type: 'email', message: 'Invalid email' });
       return;
     }
+    if (!formValues.password) {
+      setNotValid({ error: true, type: 'password', message: 'Please provide password' });
+      return;
+    }
+    if (formValues.password.length < 8) {
+      setNotValid({ error: true, type: 'password', message: 'Password must contain 8 characters' });
+      return;
+    }
     if (!formValues.phoneNo) {
       setNotValid({ error: true, type: 'phoneNo', message: 'Please provide phone number' });
       return;
@@ -94,16 +125,25 @@ export default function Register() {
       return;
     }
     let body = {
-      firstName: formValues.firstName,
-      lastName: formValues.lastName,
+      connection: 'VehicleManager',
       email: formValues.email,
-      phone: formValues.phoneNo,
-      zip: formValues.zipCode,
-      address: formValues.address,
-      city: formValues.city,
-      notes: formValues.notes
+      password: formValues.password,
+      user_metadata: { phone_number: formValues.phoneNo },
+      email_verified: false,
+      app_metadata: {}
     };
-    dispatch(AuthActions.register(body));
+    dispatch(AuthActions.registerUser(body));
+    // let body = {
+    //   firstName: formValues.firstName,
+    //   lastName: formValues.lastName,
+    //   email: formValues.email,
+    //   phone: formValues.phoneNo,
+    //   zip: formValues.zipCode,
+    //   address: formValues.address,
+    //   city: formValues.city,
+    //   notes: formValues.notes
+    // };
+    // dispatch(AuthActions.registerCustomer(body));
 
 
   }, [formValues, notValid, dispatch, isError]);
@@ -148,6 +188,17 @@ export default function Register() {
                   />
                 </InputGroup>
                 {(notValid.error && notValid.type === 'email') && <label className="text-danger" > {notValid.message} </label>}
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    value={formValues.password}
+                    onChange={(e) => setFormValues({ ...formValues, password: e.target.value })}
+                  />
+                </InputGroup>
+                {(notValid.error && notValid.type === 'password') && <label className="text-danger" > {notValid.message} </label>}
               </FormGroup>
               <FormGroup>
                 <InputGroup className="input-group-alternative mb-3">

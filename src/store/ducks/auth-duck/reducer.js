@@ -5,7 +5,7 @@ const initialAuthState = {
   errorMsg: '',
   errorStatus: 0,
   user: null,
-  profileUpdateSucc: false
+  registerUserSucc: false
 };
 export function AuthReducer(state = initialAuthState, action) {
   switch (action.type) {
@@ -18,21 +18,41 @@ export function AuthReducer(state = initialAuthState, action) {
     case AuthActionTypes.LOGIN_FAIL:
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
+    // case AuthActionTypes.GET_AUTH_TOKEN_PROG:
+    //   return { ...state, isProgress: true };
+
+    // case AuthActionTypes.GET_AUTH_TOKEN_SUCC:
+    //   return { ...state, isProgress: false,  };
+
+    // case AuthActionTypes.GET_AUTH_TOKEN_FAIL:
+    //   return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
-    case AuthActionTypes.REGISTER_PROG:
+    case AuthActionTypes.REGISTER_USER_PROG:
       return { ...state, isProgress: true };
 
-    case AuthActionTypes.REGISTER_SUCC:
+    case AuthActionTypes.REGISTER_USER_SUCC:
+      return { ...state, isProgress: false, registerUserSucc: true };
+
+    case AuthActionTypes.REGISTER_USER_FAIL:
+      return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
+
+    case AuthActionTypes.CLEAR_REGISTER_USER_SUCC:
+      return { ...state, registerUserSucc: false };
+
+
+    case AuthActionTypes.REGISTER_CUSTOMER_PROG:
+      return { ...state, isProgress: true };
+
+    case AuthActionTypes.REGISTER_CUSTOMER_SUCC:
       return { ...state, isProgress: false, user: action.payload.user };
 
-    case AuthActionTypes.REGISTER_FAIL:
+    case AuthActionTypes.REGISTER_CUSTOMER_FAIL:
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
 
-    case AuthActionTypes.CLEAR_SUCCESS:
-      return { ...state, profileUpdateSucc: false };
+
 
     case AuthActionTypes.SET_USER:
       return { ...state, user: action.payload.user };
