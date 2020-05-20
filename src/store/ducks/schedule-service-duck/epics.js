@@ -24,6 +24,25 @@ export class ScheduleServiceEpics {
         }));
     }
 
+    static getRecommendedServices(action$, state$, { ajaxGet, CORE_API_URL, HEADERS, JSON_TOKEN }) {
+        return action$.pipe(ofType(ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_PROG), switchMap(() => {
+            return ajaxGet(`${CORE_API_URL}/VINSupport/GetCurrentRecommendedServices?VINNUMBER=${state$?.value?.settings?.customerInfo?.Vehicles?.VIN}&JsonToken=${JSON_TOKEN}`, HEADERS).pipe(pluck('response'), flatMap(obj => {
+
+                return of(
+                    {
+                        type: ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_SUCC,
+                        payload: { recommendedServices: obj?.Data?.Services }
+                    },
+
+                );
+            })
+                , catchError((err) => {
+                    return of({ type: ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
+                }));
+
+        }));
+    }
+
     static getProviders(action$, state$, { ajaxGet, SCHEDULE_API_URL, HEADERS }) {
         return action$.pipe(ofType(ScheduleServiceActionTypes.GET_PROVIDERS_PROG), switchMap(() => {
             return ajaxGet(`${SCHEDULE_API_URL}/providers/`, HEADERS).pipe(pluck('response'), flatMap(array => {

@@ -7,6 +7,11 @@ export class ScheduleServiceActions {
             type: ScheduleServiceActionTypes.GET_SERVICES_PROG,
         };
     }
+    static getRecommendedServices() {
+        return {
+            type: ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_PROG,
+        };
+    }
     static getProviders() {
         return {
             type: ScheduleServiceActionTypes.GET_PROVIDERS_PROG,

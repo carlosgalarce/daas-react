@@ -1,6 +1,7 @@
 import { ScheduleServiceActionTypes } from './actions-types';
 const initialAuthState = {
   isProgressServices: false,
+  isProgressRecomndServices: false,
   isProgressProviders: false,
   isProgressAvailabilities: false,
   isProgressBookAppointment: false,
@@ -8,6 +9,7 @@ const initialAuthState = {
   errorMsg: '',
   errorStatus: 0,
   services: [],
+  recommendedServices: [],
   providers: [],
   availabilties: [],
   appointment: null
@@ -23,6 +25,15 @@ export function ScheduleServiceReducer(state = initialAuthState, action) {
     case ScheduleServiceActionTypes.GET_SERVICES_FAIL:
       return { ...state, isProgressServices: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
+
+    case ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_PROG:
+      return { ...state, isProgressRecomndServices: true };
+
+    case ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_SUCC:
+      return { ...state, isProgressRecomndServices: false, recommendedServices: action.payload.recommendedServices };
+
+    case ScheduleServiceActionTypes.GET_RECOMMENDED_SERVICES_FAIL:
+      return { ...state, isProgressRecomndServices: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
     case ScheduleServiceActionTypes.GET_PROVIDERS_PROG:

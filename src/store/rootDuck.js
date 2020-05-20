@@ -3,11 +3,13 @@ import { combineEpics } from 'redux-observable';
 import * as auth from './ducks/auth-duck';
 import * as settings from './ducks/settings-duck';
 import * as scheduleservice from './ducks/schedule-service-duck';
+import * as vehicle from './ducks/vehicle-duck';
 
 const appReducer = combineReducers({
   auth: auth.AuthReducer,
   settings: settings.SettingsReducer,
-  schedule: scheduleservice.ScheduleServiceReducer
+  schedule: scheduleservice.ScheduleServiceReducer,
+  vehicle: vehicle.VehicleReducer
 });
 export const rootReducer = (state, action) => {
   if (action.type === auth.AuthActionTypes.LOGOUT) {
@@ -31,6 +33,11 @@ export const rootEpic = combineEpics(
   scheduleservice.ScheduleServiceEpics.getProviders,
   scheduleservice.ScheduleServiceEpics.getAvailabilities,
   scheduleservice.ScheduleServiceEpics.bookAppointment,
+  scheduleservice.ScheduleServiceEpics.getRecommendedServices,
+
+
+  vehicle.VehicleEpics.getVehiclePrice,
+  vehicle.VehicleEpics.getVinSpecs
 
 
 

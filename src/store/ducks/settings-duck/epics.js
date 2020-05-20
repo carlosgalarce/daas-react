@@ -3,6 +3,8 @@ import { ofType, } from 'redux-observable';
 import { switchMap, pluck, catchError, flatMap } from 'rxjs/operators';
 import { SettingsActionTypes } from './actions-types';
 import { SettingsActions } from '.';
+import { VehicleActions } from '../vehicle-duck';
+import { ScheduleServiceActions } from '../schedule-service-duck';
 
 export class SettingsEpics {
     static getSettings(action$, state$, { ajaxGet, SCHEDULE_API_URL, HEADERS }) {
@@ -40,12 +42,24 @@ export class SettingsEpics {
             return ajaxGet(`${CORE_API_URL}/Customer/GetScheduleCustomerInfo?DealerGroupId=${state$?.value?.settings?.config?.company_name}&ScheduleEmail=carlos.galarce@yahoo.com&JsonToken=${JSON_TOKEN}`, HEADERS).pipe(pluck('response'), flatMap(obj => {
                 let data = obj?.Data;
                 data['Vehicles'] = data?.Vehicles && data?.Vehicles[0];
-                return of(
-                    {
-                        type: SettingsActionTypes.GET_CUSTOMER_INFO_SUCC,
-                        payload: { customerInfo: data }
-                    },
-                );
+                if (data['Vehicles'])
+                    return of(
+                        {
+                            type: SettingsActionTypes.GET_CUSTOMER_INFO_SUCC,
+                            payload: { customerInfo: data }
+                        },
+                        VehicleActions.getVinSpecs(),
+                        VehicleActions.getVehiclePrice(),
+                        ScheduleServiceActions.getRecommendedServices()
+                    );
+                else
+                    return of(
+                        {
+                            type: SettingsActionTypes.GET_CUSTOMER_INFO_SUCC,
+                            payload: { customerInfo: data }
+                        },
+                    );
+
             })
                 , catchError((err) => {
                     window.scrollTo(0, 0);
