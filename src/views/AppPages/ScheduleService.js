@@ -35,7 +35,6 @@ import {
 } from 'reactstrap';
 // core components
 import Header from '../../components/Headers/Header';
-import MyCarousel from '../../components/Carousel/MyCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScheduleServiceActions } from '../../store/ducks/schedule-service-duck/actions';
 import moment from 'moment';
@@ -55,6 +54,7 @@ function ScheduleService() {
   const isProgressAvailabilities = useSelector(store => store?.schedule?.isProgressAvailabilities);
   const isProgressServices = useSelector(store => store?.schedule?.isProgressServices);
   const isProgressProviders = useSelector(store => store?.schedule?.isProgressProviders);
+  const isProgressInfo = useSelector(store => store?.settings?.isProgressInfo);
   const isProgressBookAppointment = useSelector(store => store?.schedule?.isProgressBookAppointment);
   const vehicles = useSelector(store => store?.settings?.customerInfo?.Vehicles);
   const user = useSelector(store => store?.auth?.user);
@@ -152,20 +152,18 @@ function ScheduleService() {
               </CardHeader>
               <CardBody>
                 {
-                  isProgressServices || isProgressProviders
+                  isProgressServices || isProgressProviders || isProgressInfo
                     ?
                     <div className="d-flex justify-content-center align-items-center" >
                       <div className="spinner-grow" ></div>
                     </div>
                     :
                     <>
-                      <Row className="mb-5"  >
-                        <Col md={'12'} >
-                          <MyCarousel vehicles={vehicles || []} />
-                        </Col>
-                      </Row>
-                      <Row className="justify-content-center" >
-                        <Col md={'8'} >
+                      <div className='vehicle-image d-flex justify-content-center w-100' >
+                        {vehicles && <img alt={'img'} src={vehicles?.Photo} />}
+                      </div>
+                      <Row className="" >
+                        <Col md={'6'} >
                           <Row>
                             <Col md={'6'} >
                               <FormGroup>
@@ -274,6 +272,8 @@ function ScheduleService() {
                                 <Button color="primary" onClick={onBookClick} > Book Appointment</Button>}
                             </Col>
                           </Row>
+                        </Col>
+                        <Col md={'6'} >
                         </Col>
                       </Row>
                     </>

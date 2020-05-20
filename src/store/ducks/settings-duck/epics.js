@@ -36,11 +36,14 @@ export class SettingsEpics {
 
     static getCustomerInfo(action$, state$, { ajaxGet, CORE_API_URL, HEADERS, JSON_TOKEN }) {
         return action$.pipe(ofType(SettingsActionTypes.GET_CUSTOMER_INFO_PROG), switchMap(() => {
-            return ajaxGet(`${CORE_API_URL}/GetScheduleCustomerInfo?DealerNumber=${state$?.value?.settings?.config?.company_name}&ScheduleEmail=${state$?.value?.auth?.user?.email}&JsonToken=${JSON_TOKEN}`, HEADERS).pipe(pluck('response'), flatMap(obj => {
+            // ${state$?.value?.auth?.user?.email}
+            return ajaxGet(`${CORE_API_URL}/Customer/GetScheduleCustomerInfo?DealerGroupId=${state$?.value?.settings?.config?.company_name}&ScheduleEmail=carlos.galarce@yahoo.com&JsonToken=${JSON_TOKEN}`, HEADERS).pipe(pluck('response'), flatMap(obj => {
+                let data = obj?.Data;
+                data['Vehicles'] = data?.Vehicles && data?.Vehicles[0];
                 return of(
                     {
                         type: SettingsActionTypes.GET_CUSTOMER_INFO_SUCC,
-                        payload: { customerInfo: obj?.Data }
+                        payload: { customerInfo: data }
                     },
                 );
             })

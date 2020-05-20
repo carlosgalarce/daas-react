@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 export const SCHEDULE_API_URL = process.env.NODE_ENV === 'production' ? 'https://schedule.aclaro.ai/ea/index.php/api/v1' : 'https://schedule.aclaro.ai/ea/index.php/api/v1';
-export const CORE_API_URL = process.env.NODE_ENV === 'production' ? 'https://core.aclaro.ai/api/VINSupport' : 'https://core.aclaro.ai/api/VINSupport';
+export const CORE_API_URL = process.env.NODE_ENV === 'production' ? 'https://core.aclaro.ai/api' : 'https://core.aclaro.ai/api';
 export const AUTH0_URL = process.env.NODE_ENV === 'production' ? 'https://aclaro.auth0.com' : 'https://aclaro.auth0.com';
 export const AUTH0_API_URL = process.env.NODE_ENV === 'production' ? 'https://aclaro.auth0.com/api/v2' : 'https://aclaro.auth0.com/api/v2';
 export const HEADERS = {
