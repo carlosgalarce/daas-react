@@ -1,5 +1,5 @@
 import { AuthActionTypes } from './actions-types';
-import { CLIENT_ID, AUDIENCE, GRANT_TYPE, CLIENT_SECRET } from '../../services/config';
+import { /* CLIENT_ID, */ AUDIENCE, GRANT_TYPE, /* CLIENT_SECRET, */ CLIENT_ID_2, CLIENT_SECRET_2 } from '../../services/config';
 
 export class AuthActions {
 
@@ -12,7 +12,7 @@ export class AuthActions {
 
     static getAuthToken() {
 
-        let body = { client_id: CLIENT_ID, client_secret: CLIENT_SECRET, audience: AUDIENCE, grant_type: GRANT_TYPE };
+        let body = { client_id: CLIENT_ID_2, client_secret: CLIENT_SECRET_2, audience: AUDIENCE, grant_type: GRANT_TYPE };
         return {
             type: AuthActionTypes.GET_AUTH_TOKEN_PROG,
             payload: { body }

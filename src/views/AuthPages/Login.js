@@ -15,76 +15,65 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // reactstrap components
 import {
   Button,
   Card,
   CardBody,
-  FormGroup,
+  // FormGroup,
   Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Col
+  // Input,
+  // InputGroupAddon,
+  // InputGroupText,
+  // InputGroup,
+  Col,
+  Alert
 } from 'reactstrap';
+import { useAuth0 } from './react-auth0-spa';
 
-class Login extends React.Component {
-  render() {
+function Login({ history }) {
+  const { /* isAuthenticated, */ loginWithRedirect, /* logout, */ loading, } = useAuth0();
+  const [error, setError] = useState('');
+  useEffect(() => {
+    let search = history?.location?.search;
+    if (search) {
+      search = search.split('error_description=')[1];
+
+      setError(decodeURIComponent(search));
+    }
+  }, [history]);
+  if (loading) {
+    return (<div className="d-flex justify-content-center align-items-center" >
+      <div className="spinner-grow" ></div>
+    </div>);
+  }
+
+
+  else
     return (
       <>
         <Col lg="5" md="7">
           <Card className="bg-secondary shadow border-0">
-            {/* <CardHeader className="bg-transparent pb-5">
-              <div className="text-muted text-center mt-2 mb-3">
-                <small>Sign in with</small>
-              </div>
-              <div className="btn-wrapper text-center">
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require('../../assets/img/icons/common/github.svg')}
-                    />
-                  </span>
-                  <span className="btn-inner--text">Github</span>
-                </Button>
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  <span className="btn-inner--icon">
-                    <img
-                      alt="..."
-                      src={require('../../assets/img/icons/common/google.svg')}
-                    />
-                  </span>
-                  <span className="btn-inner--text">Google</span>
-                </Button>
-              </div>
-            </CardHeader> */}
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Sign in with credentials</small>
+                {error &&
+                  <Alert color="danger"  >
+                    {error}
+                  </Alert>
+                }
+                <small>On signin you will be redirected!</small>
               </div>
               <Form role="form">
-                <FormGroup className="mb-3">
+                {/* <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" autoComplete="new-email"/>
+                    <Input placeholder="Email" type="email" autoComplete="new-email" />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -94,7 +83,7 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" autoComplete="new-password"/>
+                    <Input placeholder="Password" type="password" autoComplete="new-password" />
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
@@ -109,39 +98,19 @@ class Login extends React.Component {
                   >
                     <span className="text-muted">Remember me</span>
                   </label>
-                </div>
+                </div> */}
                 <div className="text-center">
-                  <Button onClick={()=>this.props.history.push('/admin/index')} className="my-4" color="primary" type="button">
+                  <Button onClick={() => loginWithRedirect({})} className="my-4" color="primary" type="button">
                     Sign in
                   </Button>
                 </div>
               </Form>
             </CardBody>
           </Card>
-          {/* <Row className="mt-3">
-            <Col xs="6">
-              <a
-                className="text-light"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className="text-right" xs="6">
-              <a
-                className="text-light"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
-              >
-                <small>Create new account</small>
-              </a>
-            </Col>
-          </Row> */}
+
         </Col>
       </>
     );
-  }
 }
 
 export default Login;

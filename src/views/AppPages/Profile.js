@@ -36,6 +36,7 @@ import { useSelector } from 'react-redux';
 
 export default function Profile() {
   const user = useSelector(store => store?.auth?.user);
+  const customer = useSelector(store => store?.settings?.customerInfo?.Customer);
   return (
     <>
       <UserHeader />
@@ -62,7 +63,7 @@ export default function Profile() {
               <CardBody className="pt-0 pt-md-4">
                 <div className="text-center mt-5 pt-5">
                   <h3>
-                    {user?.firstName} {' '} {user?.lastName}
+                    {user?.nickname}
                     {/* <span className="font-weight-light">, 27</span> */}
                   </h3>
                   <div className="h5 font-weight-300">
@@ -71,7 +72,7 @@ export default function Profile() {
                   </div>
                   <div className="h5 mt-4">
                     <i className="ni business_briefcase-24 mr-2" />
-                    (565){user?.phone}
+                    (565){customer?.PhoneNumber}
                   </div>
                   <div className="d-flex justify-content-between align-items-center px-5 mt-3" >
                     <i className="fab fa-facebook-f"></i>
@@ -81,7 +82,7 @@ export default function Profile() {
                   </div>
                   <hr className="my-4" />
                   <Button color="primary" >
-                    <i class="fas fa-coins"></i>
+                    <i className="fas fa-coins"></i>
                     <span className=""> Gold </span>
                   </Button>
                   <Button color="secondary" >
@@ -191,7 +192,7 @@ export default function Profile() {
                             </label>
                           <Input
                             className="form-control-alternative"
-                            defaultValue={user?.address}
+                            defaultValue={customer?.Address}
                             id="input-address"
                             placeholder="Home Address"
                             type="text"

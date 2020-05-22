@@ -36,6 +36,7 @@ export default function Register() {
   const dispatch = useDispatch();
   const isError = useSelector(store => store?.auth?.isError);
   const registerUserSucc = useSelector(store => store?.auth?.registerUserSucc);
+  const user = useSelector(store => store?.auth?.user);
   const isProgress = useSelector(store => store?.auth?.isProgress);
   const [notValid, setNotValid] = useState({ error: false, type: '', message: '' });
   const [formValues, setFormValues] = useState({
@@ -71,6 +72,23 @@ export default function Register() {
 
     }
   }, [registerUserSucc, dispatch, formValues]);
+  useEffect(() => {
+    if (user) {
+      setFormValues({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNo: '',
+        zipCode: '',
+        notes: '',
+        address: '',
+        city: '',
+        password: ''
+
+      });
+      dispatch(AuthActions.setUser(null));
+    }
+  }, [user, dispatch]);
   const onSignUpClick = useCallback((e) => {
     e.preventDefault();
     if (isError) {

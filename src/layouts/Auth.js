@@ -28,13 +28,14 @@ import AuthNavbar from '../components/Navbars/AuthNavbar';
 import Login from '../views/AuthPages/Login';
 import Register from '../views/AuthPages/Register';
 import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AuthActions } from '../store/ducks/auth-duck';
 import Logout from '../views/AuthPages/Logout';
+import { useAuth0 } from '../views/AuthPages/react-auth0-spa';
 
 function Auth({ history }) {
+  const { isAuthenticated, } = useAuth0();
   const dispatch = useDispatch();
-  const user = useSelector(store => store?.auth?.user);
   useEffect(() => {
     document.body.classList.add('bg-default');
     return () => {
@@ -43,16 +44,14 @@ function Auth({ history }) {
   }, []);
 
   useEffect(() => {
-    // const token = AuthStorage.getToken();
-
-    const userFromStorage = AuthStorage.getUser();
-    if (user) {
+    if (isAuthenticated) {
       history.replace('/admin/index');
     }
-    else if (!user && userFromStorage) {
-      dispatch(AuthActions.setUser(userFromStorage));
+    else if (!isAuthenticated) {
+      AuthStorage.clearStorage();
+      dispatch(AuthActions.logout());
     }
-  }, [user, dispatch, history]);
+  }, [isAuthenticated, dispatch, history]);
 
 
   return (
@@ -104,7 +103,7 @@ function Auth({ history }) {
                 path={'/auth/logout'}
                 component={Logout}
               />
-              <Redirect from="*" to="/auth/login" />
+              <Redirect from="*" to="/auth/register" />
             </Switch>
           </Row>
         </Container>

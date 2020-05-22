@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // reactstrap components
 // import { Container } from 'reactstrap';
@@ -25,18 +25,25 @@ import AdminNavbar from '../components/Navbars/AdminNavbar';
 import Sidebar from '../components/Sidebar/Sidebar';
 
 import routes from '../routes';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { AuthActions } from '../store/ducks/auth-duck';
-import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
 import { SettingsActions } from '../store/ducks/settings-duck';
+import { useAuth0 } from '../views/AuthPages/react-auth0-spa';
 
+function GetUser() {
+  const dispatch = useDispatch();
+  const { user, } = useAuth0();
+  useEffect(() => {
+    if (user) {
+      dispatch(AuthActions.setUser(user));
+    }
+  }, [user, dispatch]);
+
+  return (<></>);
+}
 class Admin extends React.Component {
 
   componentDidMount() {
-    const userFromStorage = AuthStorage.getUser();
-    if (!this.props.user && userFromStorage) {
-      this.props.setUser(userFromStorage);
-    }
     this.props.getSettings();
   }
   componentDidUpdate(/* e */) {
@@ -74,6 +81,7 @@ class Admin extends React.Component {
   render() {
     return (
       <>
+        <GetUser />
         <Sidebar
           {...this.props}
           routes={routes}

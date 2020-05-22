@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { AuthActions } from '../../store/ducks/auth-duck';
-import { AuthStorage } from '../../store/ducks/auth-duck/auth-storage';
+import { useAuth0 } from './react-auth0-spa';
 
 export default function Logout() {
-    const dispatch = useDispatch();
+    const { logout, } = useAuth0();
 
     useEffect(() => {
-        AuthStorage.clearStorage();
-        dispatch(AuthActions.logout());
-    }, [dispatch]);
+        logout({
+            returnTo: `${window.location.origin}/auth/login`
+        });
+    }, [logout]);
     return (
         <></>
     );

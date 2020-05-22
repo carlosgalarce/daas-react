@@ -47,7 +47,7 @@ export class AuthEpics {
     static registerCustomer(action$, state$, { ajaxPost, SCHEDULE_API_URL, HEADERS }) {
         return action$.pipe(ofType(AuthActionTypes.REGISTER_CUSTOMER_PROG), switchMap(({ payload }) => {
             return ajaxPost(`${SCHEDULE_API_URL}/customers/`, payload.body, HEADERS).pipe(pluck('response'), flatMap(user => {
-                AuthStorage.setUser(user);
+                toast.success('User registered successfully. Please verify your email and login.');
                 return of(
                     {
                         type: AuthActionTypes.REGISTER_CUSTOMER_SUCC,
