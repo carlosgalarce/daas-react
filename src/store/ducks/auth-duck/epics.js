@@ -25,6 +25,25 @@ export class AuthEpics {
 
         }));
     }
+
+    static getUserProfile(action$, state$, { ajaxGet, EASCHEDULE_API_URL, }) {
+        return action$.pipe(ofType(AuthActionTypes.GET_USER_PROFILE_PROG), switchMap(() => {
+            return ajaxGet(`${EASCHEDULE_API_URL}/eausers/GetEaUserByEmail?email=${state$?.value?.auth?.user?.email}`, { 'Content-Type': 'application/json' }).pipe(pluck('response'), flatMap(obj => {
+                return of(
+                    {
+                        type: AuthActionTypes.GET_USER_PROFILE_SUCC,
+                        payload: { userProfile: obj }
+                    }
+                );
+            })
+                , catchError((err) => {
+                    window.scrollTo(0, 0);
+                    toast.error(err?.response?.message || 'couldn\'t get profile', { autoClose: true });
+                    return of({ type: AuthActionTypes.GET_USER_PROFILE_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
+                }));
+
+        }));
+    }
     static registerUser(action$, state$, { ajaxPost, AUTH0_API_URL, }) {
         return action$.pipe(ofType(AuthActionTypes.REGISTER_USER_PROG), switchMap(({ payload }) => {
             return ajaxPost(`${AUTH0_API_URL}/users`, payload.body).pipe(pluck('response'), flatMap(() => {

@@ -18,6 +18,11 @@ export class AuthActions {
             payload: { body }
         };
     }
+    static getUserProfile() {
+        return {
+            type: AuthActionTypes.GET_USER_PROFILE_PROG,
+        };
+    }
     static registerUser(body) {
         return {
             type: AuthActionTypes.REGISTER_USER_PROG,

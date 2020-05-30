@@ -22,6 +22,7 @@ export const rootEpic = combineEpics(
   auth.AuthEpics.registerCustomer,
   auth.AuthEpics.registerUser,
   auth.AuthEpics.getAuthToken,
+  auth.AuthEpics.getUserProfile,
 
 
 

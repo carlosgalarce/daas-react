@@ -5,7 +5,8 @@ const initialAuthState = {
   errorMsg: '',
   errorStatus: 0,
   user: null,
-  registerUserSucc: false
+  registerUserSucc: false,
+  userProfile: null
 };
 export function AuthReducer(state = initialAuthState, action) {
   switch (action.type) {
@@ -18,14 +19,14 @@ export function AuthReducer(state = initialAuthState, action) {
     case AuthActionTypes.LOGIN_FAIL:
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
-    // case AuthActionTypes.GET_AUTH_TOKEN_PROG:
-    //   return { ...state, isProgress: true };
+    case AuthActionTypes.GET_USER_PROFILE_PROG:
+      return { ...state, isProgress: true };
 
-    // case AuthActionTypes.GET_AUTH_TOKEN_SUCC:
-    //   return { ...state, isProgress: false,  };
+    case AuthActionTypes.GET_USER_PROFILE_SUCC:
+      return { ...state, isProgress: false, userProfile: action.payload.userProfile };
 
-    // case AuthActionTypes.GET_AUTH_TOKEN_FAIL:
-    //   return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
+    case AuthActionTypes.GET_USER_PROFILE_FAIL:
+      return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
 
     case AuthActionTypes.REGISTER_USER_PROG:

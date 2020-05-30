@@ -35,8 +35,7 @@ import UserHeader from '../../components/Headers/UserHeader';
 import { useSelector } from 'react-redux';
 
 export default function Profile() {
-  const user = useSelector(store => store?.auth?.user);
-  const customer = useSelector(store => store?.settings?.customerInfo?.Customer);
+  const userProfile = useSelector(store => store?.auth?.userProfile);
   return (
     <>
       <UserHeader />
@@ -63,16 +62,16 @@ export default function Profile() {
               <CardBody className="pt-0 pt-md-4">
                 <div className="text-center mt-5 pt-5">
                   <h3>
-                    {user?.nickname}
+                    {userProfile?.firstName}{' '}{userProfile?.lastName}
                     {/* <span className="font-weight-light">, 27</span> */}
                   </h3>
                   <div className="h5 font-weight-300">
                     <i className="ni location_pin mr-2" />
-                    {user?.city} {', '} {user?.zip}
+                    {userProfile?.city} {', '} {userProfile?.zipCode}
                   </div>
                   <div className="h5 mt-4">
                     <i className="ni business_briefcase-24 mr-2" />
-                    (565){customer?.PhoneNumber}
+                    (565){userProfile?.phoneNumber}
                   </div>
                   <div className="d-flex justify-content-between align-items-center px-5 mt-3" >
                     <i className="fab fa-facebook-f"></i>
@@ -129,7 +128,7 @@ export default function Profile() {
                             </label>
                           <Input
                             className="form-control-alternative"
-                            defaultValue={user?.firstName}
+                            defaultValue={userProfile?.firstName}
                             id="input-first-name"
                             placeholder="First name"
                             type="text"
@@ -146,7 +145,7 @@ export default function Profile() {
                             </label>
                           <Input
                             className="form-control-alternative"
-                            defaultValue={user?.lastName}
+                            defaultValue={userProfile?.lastName}
                             id="input-last-name"
                             placeholder="Last name"
                             type="text"
@@ -168,7 +167,7 @@ export default function Profile() {
                             id="input-email"
                             placeholder="jesse@example.com"
                             type="email"
-                            defaultValue={user?.email}
+                            defaultValue={userProfile?.email}
                           />
                         </FormGroup>
                       </Col>
@@ -192,7 +191,7 @@ export default function Profile() {
                             </label>
                           <Input
                             className="form-control-alternative"
-                            defaultValue={customer?.Address}
+                            defaultValue={userProfile?.address}
                             id="input-address"
                             placeholder="Home Address"
                             type="text"
@@ -211,7 +210,7 @@ export default function Profile() {
                             </label>
                           <Input
                             className="form-control-alternative"
-                            defaultValue={user?.city}
+                            defaultValue={userProfile?.city}
                             id="input-city"
                             placeholder="City"
                             type="text"
@@ -230,8 +229,8 @@ export default function Profile() {
                             className="form-control-alternative"
                             id="input-postal-code"
                             placeholder="Zip code"
-                            type="number"
-                            defaultValue={user?.zip}
+                            type="text"
+                            defaultValue={userProfile?.zipCode}
                           />
                         </FormGroup>
                       </Col>
@@ -247,7 +246,7 @@ export default function Profile() {
                         className="form-control-alternative"
                         placeholder="A few words about you ..."
                         rows="4"
-                        defaultValue={user?.notes}
+                        defaultValue={userProfile?.notes}
                         type="textarea"
                       />
                     </FormGroup>

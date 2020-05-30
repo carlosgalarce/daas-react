@@ -62,7 +62,7 @@ function ScheduleService() {
   const vehiclePrice = useSelector(store => store?.vehicle?.price);
   const isProgressRecomndServices = useSelector(store => store?.schedule?.isProgressRecomndServices);
   const vehicles = useSelector(store => store?.settings?.customerInfo?.Vehicles);
-  const Customer = useSelector(store => store?.settings?.customerInfo?.Customer);
+  const userProfile = useSelector(store => store?.auth?.userProfile);
   const appointment = useSelector(store => store?.schedule?.appointment);
   const [formValues, setFormValues] = useState({
     providerId: '',
@@ -133,13 +133,13 @@ function ScheduleService() {
       start,
       end,
       notes: formValues.notes,
-      customerId: Customer?.LegacyCustomerID,
+      customerId: userProfile?.id,
       providerId: formValues.providerId,
       serviceId: formValues.serviceId,
       googleCalendarId: null
     };
     dispatch(ScheduleServiceActions.bookAppointment(body));
-  }, [formValues, notValid, Customer, dispatch]);
+  }, [formValues, notValid, userProfile, dispatch]);
 
 
   return (

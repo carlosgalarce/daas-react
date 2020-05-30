@@ -36,6 +36,7 @@ function GetUser() {
   useEffect(() => {
     if (user) {
       dispatch(AuthActions.setUser(user));
+      dispatch(AuthActions.getUserProfile());
     }
   }, [user, dispatch]);
 
