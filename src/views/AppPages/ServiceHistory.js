@@ -104,10 +104,10 @@ export default function ServiceHistory() {
                                                         key={'ActivityID'}
                                                         wrapperClasses={'table-responsive'}
                                                         classes=""
-                                                        headerWrapperClasses="text-primary text-left"
+                                                        headerWrapperClasses="thead-light "
                                                         bordered={false}
                                                         headerClasses=""
-                                                        bodyClasses="text-left"
+                                                        bodyClasses=""
                                                         {...props.baseProps}
                                                         // onTableChange={onTableChange}
                                                         noDataIndication={() => <div className="text-center" >{'No results found'}</div>}
