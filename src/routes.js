@@ -23,6 +23,7 @@ import ScheduleService from './views/AppPages/ScheduleService';
 import Profile from './views/AppPages/Profile';
 import Tables from './views/AppPages/Tables';
 import YourVehicle from './views/AppPages/YourVehicle';
+import ServiceHistory from './views/AppPages/ServiceHistory';
 
 var routes = [
   {
@@ -40,10 +41,10 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/maps',
+    path: '/servicehistory',
     name: 'Service History',
     icon: 'fas fa-history text-orange',
-    component: Index,
+    component: ServiceHistory,
     layout: '/admin'
   },
   {
