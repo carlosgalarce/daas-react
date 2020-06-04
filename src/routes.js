@@ -21,13 +21,15 @@ import Index from './views/AppPages/Index';
 // import Tables from './views/examples/Tables.js';
 import ScheduleService from './views/AppPages/ScheduleService';
 import Profile from './views/AppPages/Profile';
+import Tables from './views/AppPages/Tables';
+import YourVehicle from './views/AppPages/YourVehicle';
 
 var routes = [
   {
-    path: '/index',
+    path: '/yourvehicle',
     name: 'Your vehicle',
     icon: 'fas fa-car text-primary',
-    component: Index,
+    component: YourVehicle,
     layout: '/admin'
   },
   {
@@ -55,7 +57,7 @@ var routes = [
     path: '/tables',
     name: 'Finance',
     icon: 'fas fa-money-bill text-red',
-    component: Index,
+    component: Tables,
     layout: '/admin'
   },
   {

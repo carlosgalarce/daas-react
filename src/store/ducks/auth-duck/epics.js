@@ -28,7 +28,7 @@ export class AuthEpics {
 
     static getUserProfile(action$, state$, { ajaxGet, EASCHEDULE_API_URL, }) {
         return action$.pipe(ofType(AuthActionTypes.GET_USER_PROFILE_PROG), switchMap(() => {
-            return ajaxGet(`${EASCHEDULE_API_URL}/eausers/GetEaUserByEmail?email=${state$?.value?.auth?.user?.email}`, { 'Content-Type': 'application/json' }).pipe(pluck('response'), flatMap(obj => {
+            return ajaxGet(`${EASCHEDULE_API_URL}/eausers/GetEaUserByEmail?email=carlos.galarce@yahoo.com`, { 'Content-Type': 'application/json' }).pipe(pluck('response'), flatMap(obj => {
                 return of(
                     {
                         type: AuthActionTypes.GET_USER_PROFILE_SUCC,
