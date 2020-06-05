@@ -151,7 +151,7 @@ function ScheduleService() {
           <div className=" col">
             <Card className=" shadow">
               <CardHeader className=" bg-transparent">
-                <h3 className=" mb-0">Schedule a Service</h3>
+                <h3 className=" mb-0 text-center ">Schedule a Service</h3>
               </CardHeader>
               <CardBody>
                 {

@@ -46,7 +46,7 @@ export default function Profile() {
             <Card className="card-profile shadow">
               <Row className="justify-content-center">
                 <Col className="order-lg-2" lg="3">
-                  <div className="card-profile-image">
+                  {/* <div className="card-profile-image">
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
@@ -54,7 +54,7 @@ export default function Profile() {
                         src={require('../../assets/img/theme/download.png')}
                       />
                     </a>
-                  </div>
+                  </div> */}
                 </Col>
               </Row>
               <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
