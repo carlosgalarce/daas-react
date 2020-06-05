@@ -18,11 +18,11 @@
 import React from 'react';
 
 // reactstrap components
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 
 export default function UserHeader() {
-  const user = useSelector(store => store?.auth?.user);
+  const user = useSelector(store => store?.auth?.userProfile);
   return (
     <>
       <div
@@ -30,7 +30,7 @@ export default function UserHeader() {
         style={{
           minHeight: '600px',
           backgroundImage:
-            'url(' + require('../../assets/img/theme/profile-cover.jpg') + ')',
+            'url(' + require('../../assets/img/theme/cover.jpeg') + ')',
           backgroundSize: 'cover',
           backgroundPosition: 'center top'
         }}
@@ -46,13 +46,13 @@ export default function UserHeader() {
                 {/* This is your profile page. You can see the progress you've
                 made with your work and manage your projects or assigned tasks */}
               </p>
-              <Button
+              {/* <Button
                 color="info"
                 href="#pablo"
                 onClick={e => e.preventDefault()}
               >
                 Edit profile
-                </Button>
+                </Button> */}
             </Col>
           </Row>
         </Container>

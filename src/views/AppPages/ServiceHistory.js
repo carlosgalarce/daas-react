@@ -25,16 +25,6 @@ export default function ServiceHistory() {
     };
     const columns = [
         {
-            dataField: 'FirstName',
-            text: 'FirstName',
-
-        },
-        {
-            dataField: 'LastName',
-            text: 'LastName',
-
-        },
-        {
             dataField: 'Details',
             text: 'Details',
         },
@@ -75,7 +65,7 @@ export default function ServiceHistory() {
                     <div className="col">
                         <Card className=" shadow">
                             <CardHeader className=" bg-transparent">
-                                <h3 className=" mb-0">Service History</h3>
+                                <h3 className=" mb-0 text-center ">Service History</h3>
                             </CardHeader>
                             <CardBody>
                                 {isProgress || isProgressInfo

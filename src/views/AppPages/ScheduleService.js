@@ -58,8 +58,6 @@ function ScheduleService() {
   const isProgressBookAppointment = useSelector(store => store?.schedule?.isProgressBookAppointment);
   const isProgressSpecs = useSelector(store => store?.vehicle?.isProgressSpecs);
   const isProgressPrice = useSelector(store => store?.vehicle?.isProgressPrice);
-  const vehicleSpecs = useSelector(store => store?.vehicle?.specs);
-  const vehiclePrice = useSelector(store => store?.vehicle?.price);
   const isProgressRecomndServices = useSelector(store => store?.schedule?.isProgressRecomndServices);
   const vehicles = useSelector(store => store?.settings?.customerInfo?.Vehicles);
   const userProfile = useSelector(store => store?.auth?.userProfile);
@@ -164,11 +162,11 @@ function ScheduleService() {
                     </div>
                     :
                     <>
-                      <div className='vehicle-image d-flex justify-content-center w-100' >
+                      <div className='vehicle-image d-flex justify-content-start ' >
                         {vehicles && <img alt={'img'} src={vehicles?.Photo} />}
                       </div>
                       <Row className="" >
-                        <Col md={'6'} >
+                        <Col md={'12'} >
                           <Row>
                             <Col md={'6'} >
                               <FormGroup>
@@ -217,11 +215,12 @@ function ScheduleService() {
 
                           <Row>
                             <Col md={'6'} >
+                              <Label className="form-control-label" for="start-date">Select Appointment Date </Label>
                               <FormGroup>
 
-                                <Label className="form-control-label" for="start-date">Select Appointment Date </Label>
                                 <ReactDatePicker
                                   selected={formValues.selectedDate}
+                                  wrapperClassName="w-100"
                                   onChange={date => setFormValues({ ...formValues, selectedDate: date })}
                                   minDate={new Date()}
                                   placeholderText="Select date"
@@ -278,7 +277,7 @@ function ScheduleService() {
                             </Col>
                           </Row>
                         </Col>
-                        <Col md={'6'} className='vehicle-info-container shadow-lg rounded' >
+                        {/* <Col md={'6'} className='vehicle-info-container shadow-lg rounded' >
                           <h1 className="text-center" >Vehicle Info</h1>
                           <h2 className="text-primary" >Specs</h2>
                           <div className="d-flex  justify-content-between" >
@@ -350,7 +349,7 @@ function ScheduleService() {
                             <h4  > Period (to) </h4>
                             <h4  > {vehiclePrice?.period[1]} </h4>
                           </div>
-                        </Col>
+                        </Col> */}
                       </Row>
                     </>
                 }

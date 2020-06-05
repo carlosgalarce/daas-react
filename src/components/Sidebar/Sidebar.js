@@ -159,7 +159,7 @@ class Sidebar extends React.Component {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={require("../../assets/img/theme/team-2-800x800.jpg")}
+                      src={require("../../assets/img/theme/download.png")}
                     />
                   </span>
                 </Media>

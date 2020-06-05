@@ -51,7 +51,7 @@ export default function Profile() {
                       <img
                         alt="..."
                         className="rounded-circle"
-                        src={require('../../assets/img/theme/team-4-800x800.jpg')}
+                        src={require('../../assets/img/theme/download.png')}
                       />
                     </a>
                   </div>
@@ -100,14 +100,14 @@ export default function Profile() {
                     <h3 className="mb-0">My account</h3>
                   </Col>
                   <Col className="text-right" xs="4">
-                    <Button
+                    {/* <Button
                       color="primary"
                       href="#pablo"
                       onClick={e => e.preventDefault()}
                       size="sm"
                     >
                       Settings
-                      </Button>
+                      </Button> */}
                   </Col>
                 </Row>
               </CardHeader>

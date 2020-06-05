@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, CardHeader, Card, CardBody } from 'reactstrap';
 import Header from '../../components/Headers/Header';
 import { useSelector } from 'react-redux';
-
+import NumberFormat from 'react-number-format';
 
 export default function YourVehicle() {
     const vehicles = useSelector(store => store?.settings?.customerInfo?.Vehicles);
@@ -38,8 +38,8 @@ export default function YourVehicle() {
                                             <div className='vehicle-image d-flex justify-content-center w-100' >
                                                 {vehicles && <img alt={'img'} src={vehicles?.Photo} />}
                                             </div>
-                                            <Row className="" >
-                                                <Col md={'12'} className='vehicle-info-container shadow-lg rounded' >
+                                            <Row className="justify-content-center" >
+                                                <Col md={'8'} className='vehicle-info-container shadow-lg rounded' >
                                                     <h1 className="text-center" >Vehicle Info</h1>
                                                     <h2 className="text-primary" >Specs</h2>
                                                     <div className="d-flex  justify-content-between" >
@@ -93,24 +93,27 @@ export default function YourVehicle() {
                                                     <h2 className="text-primary" >Price</h2>
                                                     <div className="d-flex  justify-content-between" >
                                                         <h4  > Price (above) </h4>
-                                                        <h4  > {vehiclePrice?.prices?.above} </h4>
+                                                        {/* {vehiclePrice?.prices?.above} </h4> */}
+                                                        <h4  ><NumberFormat value={vehiclePrice?.prices?.above} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h4 >
                                                     </div>
                                                     <div className="d-flex  justify-content-between" >
                                                         <h4  > Price (average) </h4>
-                                                        <h4  > {vehiclePrice?.prices?.average} </h4>
+                                                        {/* <h4  > {vehiclePrice?.prices?.average} </h4> */}
+                                                        <h4  ><NumberFormat value={vehiclePrice?.prices?.above} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h4>
                                                     </div>
                                                     <div className="d-flex  justify-content-between" >
                                                         <h4  > Price (below) </h4>
-                                                        <h4  > {vehiclePrice?.prices?.below} </h4>
+                                                        {/* <h4  > {vehiclePrice?.prices?.below} </h4> */}
+                                                        <h4  ><NumberFormat value={vehiclePrice?.prices?.below} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h4>
                                                     </div>
-                                                    <div className="d-flex  justify-content-between" >
+                                                    {/* <div className="d-flex  justify-content-between" >
                                                         <h4  > Period (from) </h4>
                                                         <h4  > {vehiclePrice?.period[0]} </h4>
                                                     </div>
                                                     <div className="d-flex  justify-content-between" >
                                                         <h4  > Period (to) </h4>
                                                         <h4  > {vehiclePrice?.period[1]} </h4>
-                                                    </div>
+                                                    </div> */}
                                                 </Col>
                                             </Row>
                                         </>

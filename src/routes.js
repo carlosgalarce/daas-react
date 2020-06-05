@@ -21,7 +21,6 @@ import Index from './views/AppPages/Index';
 // import Tables from './views/examples/Tables.js';
 import ScheduleService from './views/AppPages/ScheduleService';
 import Profile from './views/AppPages/Profile';
-import Tables from './views/AppPages/Tables';
 import YourVehicle from './views/AppPages/YourVehicle';
 import ServiceHistory from './views/AppPages/ServiceHistory';
 
@@ -58,7 +57,7 @@ var routes = [
     path: '/tables',
     name: 'Finance',
     icon: 'fas fa-money-bill text-red',
-    component: Tables,
+    component: Index,
     layout: '/admin'
   },
   {
