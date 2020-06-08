@@ -94,6 +94,7 @@ export class ScheduleServiceEpics {
                 );
             })
                 , catchError((err) => {
+                    toast.error('Something went wrong!');
                     return of({ type: ScheduleServiceActionTypes.BOOK_APPOINTMENT_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
                 }));
 

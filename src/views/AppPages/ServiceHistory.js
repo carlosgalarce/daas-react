@@ -27,30 +27,37 @@ export default function ServiceHistory() {
         {
             dataField: 'Details',
             text: 'Details',
+            sort:true
         },
         {
             dataField: 'DealerGroupName',
             text: 'DealerGroupName',
+            sort:true
         },
         {
             dataField: 'DateAdded',
             text: 'DateAdded',
+            sort:true
         },
         {
             dataField: 'Contact_LastName',
             text: 'Contact_LastName',
+            sort:true
         },
         {
             dataField: 'Comments',
             text: 'Comments',
+            sort:true
         },
         {
             dataField: 'ActivityDescription',
             text: 'ActivityDescription',
+            sort:true
         },
         {
             dataField: 'ActivityDateTime',
             text: 'ActivityDateTime',
+            sort:true
         },
 
 
