@@ -5,13 +5,15 @@ import * as settings from './ducks/settings-duck';
 import * as scheduleservice from './ducks/schedule-service-duck';
 import * as vehicle from './ducks/vehicle-duck';
 import * as serviceHistory from './ducks/service-history-duck';
+import * as yourOffers from './ducks/your-offers-duck';
 
 const appReducer = combineReducers({
   auth: auth.AuthReducer,
   settings: settings.SettingsReducer,
   schedule: scheduleservice.ScheduleServiceReducer,
   vehicle: vehicle.VehicleReducer,
-  serviceHistory: serviceHistory.ServiceHistoryReducer
+  serviceHistory: serviceHistory.ServiceHistoryReducer,
+  yourOffers: yourOffers.YourOffersReducer
 });
 export const rootReducer = (state, action) => {
   if (action.type === auth.AuthActionTypes.LOGOUT) {
@@ -43,7 +45,8 @@ export const rootEpic = combineEpics(
   vehicle.VehicleEpics.getVinSpecs,
 
 
-  serviceHistory.ServiceHistoryEpics.getServiceHistory
+  serviceHistory.ServiceHistoryEpics.getServiceHistory,
+  yourOffers.YourOffersEpics.getCoupons,
 
 
 

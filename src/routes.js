@@ -23,6 +23,7 @@ import ScheduleService from './views/AppPages/ScheduleService';
 import Profile from './views/AppPages/Profile';
 import YourVehicle from './views/AppPages/YourVehicle';
 import ServiceHistory from './views/AppPages/ServiceHistory';
+import YourOffers from './views/AppPages/YourOffers';
 
 var routes = [
   {
@@ -50,7 +51,7 @@ var routes = [
     path: '/your-offer',
     name: 'Your Offers',
     icon: 'fas fa-coins text-yellow',
-    component: Index,
+    component: YourOffers,
     layout: '/admin'
   },
   {
