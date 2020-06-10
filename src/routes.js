@@ -24,6 +24,7 @@ import Profile from './views/AppPages/Profile';
 import YourVehicle from './views/AppPages/YourVehicle';
 import ServiceHistory from './views/AppPages/ServiceHistory';
 import YourOffers from './views/AppPages/YourOffers';
+import Loyalty from './views/AppPages/Loyalty';
 
 var routes = [
   {
@@ -55,7 +56,7 @@ var routes = [
     layout: '/admin'
   },
   {
-    path: '/tables',
+    path: '/finance',
     name: 'Finance',
     icon: 'fas fa-money-bill text-red',
     component: Index,
@@ -77,9 +78,9 @@ var routes = [
   },
   {
     path: '/loyalty-plus',
-    name: 'Loyalty Plus',
+    name: 'Loyalty',
     icon: 'fas fa-plus-circle text-pink',
-    component: Index,
+    component: Loyalty,
     layout: '/admin'
   },
   {

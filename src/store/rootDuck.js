@@ -6,6 +6,7 @@ import * as scheduleservice from './ducks/schedule-service-duck';
 import * as vehicle from './ducks/vehicle-duck';
 import * as serviceHistory from './ducks/service-history-duck';
 import * as yourOffers from './ducks/your-offers-duck';
+import * as loyalty from './ducks/loyalty-duck';
 
 const appReducer = combineReducers({
   auth: auth.AuthReducer,
@@ -13,7 +14,8 @@ const appReducer = combineReducers({
   schedule: scheduleservice.ScheduleServiceReducer,
   vehicle: vehicle.VehicleReducer,
   serviceHistory: serviceHistory.ServiceHistoryReducer,
-  yourOffers: yourOffers.YourOffersReducer
+  yourOffers: yourOffers.YourOffersReducer,
+  loyalty: loyalty.LoyaltyReducer,
 });
 export const rootReducer = (state, action) => {
   if (action.type === auth.AuthActionTypes.LOGOUT) {
@@ -46,7 +48,12 @@ export const rootEpic = combineEpics(
 
 
   serviceHistory.ServiceHistoryEpics.getServiceHistory,
+
+
   yourOffers.YourOffersEpics.getCoupons,
+
+
+  loyalty.LoyaltyEpics.getRewardPoints,
 
 
 
