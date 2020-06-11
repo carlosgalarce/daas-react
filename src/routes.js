@@ -25,6 +25,7 @@ import YourVehicle from './views/AppPages/YourVehicle';
 import ServiceHistory from './views/AppPages/ServiceHistory';
 import YourOffers from './views/AppPages/YourOffers';
 import Loyalty from './views/AppPages/Loyalty';
+import RecommendForYou from './views/AppPages/RecommendForYou';
 
 var routes = [
   {
@@ -87,7 +88,7 @@ var routes = [
     path: '/recommended',
     name: 'Recommended For You',
     icon: 'fas fa-info-circle text-red',
-    component: Index,
+    component: RecommendForYou,
     layout: '/admin'
   }
 ];

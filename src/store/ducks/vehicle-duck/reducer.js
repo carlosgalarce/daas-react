@@ -2,11 +2,13 @@ import { VehicleActionTypes } from './actions-types';
 const initialAuthState = {
   isProgressSpecs: false,
   isProgressPrice: false,
+  isProgressRecommend: false,
   isError: false,
   errorMsg: '',
   errorStatus: 0,
   specs: null,
-  price: null
+  price: null,
+  recommendForYou: null
 
 };
 export function VehicleReducer(state = initialAuthState, action) {
@@ -30,6 +32,16 @@ export function VehicleReducer(state = initialAuthState, action) {
     case VehicleActionTypes.GET_VEHICLE_PRICE_FAIL:
       return { ...state, isProgressPrice: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
+
+
+    case VehicleActionTypes.GET_VEHICLE_MATCH_PROG:
+      return { ...state, isProgressRecommend: true };
+
+    case VehicleActionTypes.GET_VEHICLE_MATCH_SUCC:
+      return { ...state, isProgressRecommend: false, recommendForYou: action.payload.recommendForYou };
+
+    case VehicleActionTypes.GET_VEHICLE_MATCH_FAIL:
+      return { ...state, isProgressRecommend: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
 
     default:
       return state;

@@ -42,6 +42,25 @@ export class VehicleEpics {
     }
 
 
+    static getVehicleMatch(action$, state$, { ajaxGet, CORE_API_URL, JSON_TOKEN }) {
+        return action$.pipe(ofType(VehicleActionTypes.GET_VEHICLE_MATCH_PROG), switchMap(() => {
+            return ajaxGet(`${CORE_API_URL}/VINSupport/GetVehicleMatch?dealGroupID=${state$?.value?.settings?.customerInfo?.Customer?.DealerGroupId}&vIN=${state$?.value?.settings?.customerInfo?.Vehicles?.VIN}&JsonToken=${JSON_TOKEN}`).pipe(pluck('response'), flatMap(obj => {
+                return of(
+                    {
+                        type: VehicleActionTypes.GET_VEHICLE_MATCH_SUCC,
+                        payload: { recommendForYou: obj?.Data?.Vehicles?.Items }
+                    },
+                );
+            })
+                , catchError((err) => {
+                    window.scrollTo(0, 0);
+                    return of({ type: VehicleActionTypes.GET_VEHICLE_MATCH_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
+                }));
+
+        }));
+    }
+
+
 
 
 }

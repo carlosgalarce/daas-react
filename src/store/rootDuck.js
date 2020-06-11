@@ -45,6 +45,7 @@ export const rootEpic = combineEpics(
 
   vehicle.VehicleEpics.getVehiclePrice,
   vehicle.VehicleEpics.getVinSpecs,
+  vehicle.VehicleEpics.getVehicleMatch,
 
 
   serviceHistory.ServiceHistoryEpics.getServiceHistory,

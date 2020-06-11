@@ -12,4 +12,10 @@ export class VehicleActions {
             type: VehicleActionTypes.GET_VEHICLE_PRICE_PROG,
         };
     }
+
+    static getVehicleMatch() {
+        return {
+            type: VehicleActionTypes.GET_VEHICLE_MATCH_PROG,
+        };
+    }
 }
