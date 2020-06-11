@@ -26,6 +26,7 @@ import ServiceHistory from './views/AppPages/ServiceHistory';
 import YourOffers from './views/AppPages/YourOffers';
 import Loyalty from './views/AppPages/Loyalty';
 import RecommendForYou from './views/AppPages/RecommendForYou';
+import Finance from './views/AppPages/Finance';
 
 var routes = [
   {
@@ -60,7 +61,7 @@ var routes = [
     path: '/finance',
     name: 'Finance',
     icon: 'fas fa-money-bill text-red',
-    component: Index,
+    component: Finance,
     layout: '/admin'
   },
   {

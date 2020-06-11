@@ -26,87 +26,82 @@ export default function RecommendForYou() {
     const columns = [
         {
             dataField: 'MAKE',
-            text: 'MAKE',
+            text: 'Make',
             sort: true
         },
         {
             dataField: 'YEAR',
-            text: 'YEAR',
+            text: 'Year',
             sort: true
         },
         {
             dataField: 'MODEL',
-            text: 'MODEL',
-            sort: true
-        },
-        {
-            dataField: 'MODEL',
-            text: 'MODEL',
+            text: 'Model',
             sort: true
         },
         {
             dataField: 'BODY',
-            text: 'BODY',
+            text: 'Body',
             sort: true
         },
         {
             dataField: 'MILEAGE',
-            text: 'MILEAGE',
+            text: 'Mileage',
             sort: true
         },
         {
             dataField: 'TRANSMISSION',
-            text: 'TRANSMISSION',
+            text: 'Transmission',
             sort: true
         },
         {
             dataField: 'MPGHWY',
-            text: 'MPGHWY',
+            text: 'Mpghwy',
             sort: true
         },
         {
             dataField: 'MPGCITY',
-            text: 'MPGCITY',
+            text: 'Mpgcity',
             sort: true
         },
         {
             dataField: 'CONDITION',
-            text: 'CONDITION',
+            text: 'Condition',
             sort: true
         },
         {
             dataField: 'PRICE',
-            text: 'PRICE',
+            text: 'Price',
             sort: true
         },
         {
             dataField: 'MARKETPLACE_PRICE',
-            text: 'MARKETPLACE_PRICE',
+            text: 'Marketplace Price',
             sort: true
         },
         {
             dataField: 'vsMake',
-            text: 'vsMake',
+            text: 'Vsmake',
             sort: true
         },
         {
             dataField: 'vsModel',
-            text: 'vsModel',
+            text: 'Vs model',
             sort: true
         },
         {
             dataField: 'engine',
-            text: 'engine',
+            text: 'Engine',
             sort: true
         },
         {
             dataField: 'vsStyle',
-            text: 'vsStyle',
+            text: 'Vs style',
             sort: true
         },
         {
             dataField: 'made_in',
-            text: 'Pmade_inRICE',
+            text: 'Made In',
             sort: true
         },
 
