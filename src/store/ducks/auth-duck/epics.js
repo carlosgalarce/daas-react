@@ -4,6 +4,7 @@ import { switchMap, pluck, catchError, flatMap } from 'rxjs/operators';
 import { AuthActionTypes } from './actions-types';
 import { AuthStorage } from './auth-storage';
 import { toast } from 'react-toastify';
+import { AuthActions } from '.';
 export class AuthEpics {
 
 
@@ -37,9 +38,18 @@ export class AuthEpics {
                 );
             })
                 , catchError((err) => {
-                    window.scrollTo(0, 0);
-                    toast.error(err?.response?.message || 'couldn\'t get profile', { autoClose: true });
-                    return of({ type: AuthActionTypes.GET_USER_PROFILE_FAIL, payload: { err, message: err?.response?.message, status: err?.status } });
+                    let body = {
+                        email: state$?.value?.auth?.user?.email,
+                        firstName: state$?.value?.auth?.user?.given_name,
+                        lastName: state$?.value?.auth?.user?.family_name,
+                        phone: '+12025550119'
+                    };
+                    return of(
+                        AuthActions.registerCustomer(body),
+                        {
+                            type: AuthActionTypes.GET_USER_PROFILE_FAIL,
+                            payload: { err, message: err?.response?.message, status: err?.status }
+                        });
                 }));
 
         }));
@@ -66,7 +76,8 @@ export class AuthEpics {
     static registerCustomer(action$, state$, { ajaxPost, SCHEDULE_API_URL, HEADERS }) {
         return action$.pipe(ofType(AuthActionTypes.REGISTER_CUSTOMER_PROG), switchMap(({ payload }) => {
             return ajaxPost(`${SCHEDULE_API_URL}/customers/`, payload.body, HEADERS).pipe(pluck('response'), flatMap(user => {
-                toast.success('User registered successfully. Please verify your email and login.');
+                if (!state$?.value?.auth?.user)
+                    toast.success('User registered successfully. Please verify your email and login.');
                 return of(
                     {
                         type: AuthActionTypes.REGISTER_CUSTOMER_SUCC,

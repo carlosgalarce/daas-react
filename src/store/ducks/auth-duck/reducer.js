@@ -46,7 +46,7 @@ export function AuthReducer(state = initialAuthState, action) {
       return { ...state, isProgress: true };
 
     case AuthActionTypes.REGISTER_CUSTOMER_SUCC:
-      return { ...state, isProgress: false, user: action.payload.user };
+      return { ...state, isProgress: false, userProfile: action.payload.user };
 
     case AuthActionTypes.REGISTER_CUSTOMER_FAIL:
       return { ...state, isProgress: false, isError: true, errorMsg: action.payload.message, errorStatus: action.payload.status };
