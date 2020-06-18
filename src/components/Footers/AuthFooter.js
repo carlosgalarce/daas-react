@@ -20,9 +20,12 @@ import React from "react";
 
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
+import { Link, withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   render() {
+    const { history } = this.props;
+    console.log(history)
     return (
       <>
         <footer className="py-5">
@@ -33,8 +36,7 @@ class Login extends React.Component {
                   © 2018{" "}
                   <a
                     className="font-weight-bold ml-1"
-                    href="https://www.creative-tim.com?ref=adr-auth-footer"
-                    target="_blank"
+                    href="Javascript:void(0)"
                   >
                     Creative Tim
                   </a>
@@ -67,12 +69,11 @@ class Login extends React.Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink
-                      href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md?ref=adr-auth-footer"
-                      target="_blank"
-                    >
-                      MIT License
-                    </NavLink>
+                    <Link className="nav-link" to='/classic/terms-condition'>
+
+                      Terms & Condition
+
+                    </Link>
                   </NavItem>
                 </Nav>
               </Col>
@@ -84,4 +85,6 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
+
+

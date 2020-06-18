@@ -21,7 +21,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 // import { Container } from 'reactstrap';
 // core components
 import AdminNavbar from '../components/Navbars/AdminNavbar';
-// import AdminFooter from '../components/Footers/AdminFooter';
+import AdminFooter from '../components/Footers/AdminFooter';
 import Sidebar from '../components/Sidebar/Sidebar';
 
 import routes from '../routes';
@@ -29,6 +29,7 @@ import { connect, useDispatch } from 'react-redux';
 import { AuthActions } from '../store/ducks/auth-duck';
 import { SettingsActions } from '../store/ducks/settings-duck';
 import { useAuth0 } from '../views/AuthPages/react-auth0-spa';
+import { Container } from 'reactstrap';
 
 function GetUser() {
   const dispatch = useDispatch();
@@ -101,9 +102,9 @@ class Admin extends React.Component {
             {this.getRoutes(routes)}
             <Redirect from="*" to="/admin/yourvehicle" />
           </Switch>
-          {/* <Container fluid>
+          <Container fluid>
             <AdminFooter />
-          </Container> */}
+          </Container>
         </div>
       </>
     );

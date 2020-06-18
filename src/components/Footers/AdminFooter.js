@@ -78,7 +78,7 @@ class Footer extends React.Component {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  MIT License
+                  Privacy Policy
                 </NavLink>
               </NavItem>
             </Nav>

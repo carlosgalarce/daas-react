@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import AdminLayout from './layouts/Admin.js';
 import AuthLayout from './layouts/Auth.js';
+import Classic from './layouts/Classic';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.js';
 import { ToastContainer } from 'react-toastify';
 import { CLIENT_ID } from './store/services/config.js';
@@ -23,7 +24,7 @@ export default function App({ store }) {
             domain={'aclaro.auth0.com'}
             client_id={CLIENT_ID}
             redirect_uri={`${window.location.origin}/auth/login`}
-            // onRedirectCallback={onRedirectCallback}
+        // onRedirectCallback={onRedirectCallback}
         >
             <Provider store={store}>
                 <BrowserRouter>
@@ -31,6 +32,7 @@ export default function App({ store }) {
                     <Switch>
                         <Route path="/admin" render={props => <PrivateRoute {...props} component={AdminLayout} />} />
                         <Route path="/auth" render={props => <AuthLayout {...props} />} />
+                        <Route path="/classic" render={props => <Classic {...props} />} />
                         <Redirect from="/" to="/admin/index" />
                     </Switch>
                 </BrowserRouter>

@@ -16,26 +16,17 @@
 
 */
 import React, { useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 // reactstrap components
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, } from 'reactstrap';
 
 // core components
-import AuthNavbar from '../components/Navbars/AuthNavbar';
 import AuthFooter from '../components/Footers/AuthFooter';
 
 // import routes from '../routes';
-import Login from '../views/AuthPages/Login';
-import Register from '../views/AuthPages/Register';
-import { AuthStorage } from '../store/ducks/auth-duck/auth-storage';
-import { useDispatch } from 'react-redux';
-import { AuthActions } from '../store/ducks/auth-duck';
-import Logout from '../views/AuthPages/Logout';
-import { useAuth0 } from '../views/AuthPages/react-auth0-spa';
+import TermsNConditon from '../views/ClassicPages/TermsNConditon';
 
-function Auth({ history }) {
-  const { isAuthenticated, } = useAuth0();
-  const dispatch = useDispatch();
+function Classic() {
   useEffect(() => {
     document.body.classList.add('bg-default');
     return () => {
@@ -43,23 +34,15 @@ function Auth({ history }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.replace('/admin/index');
-    }
-    else if (!isAuthenticated) {
-      AuthStorage.clearStorage();
-      dispatch(AuthActions.logout());
-    }
-  }, [isAuthenticated, dispatch, history]);
+
 
 
   return (
     <>
       <div className="main-content">
-        <AuthNavbar />
+        {/* <AuthNavbar /> */}
         <div className="header bg-gradient-info py-7 py-lg-8">
-          <Container>
+          {/* <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
@@ -70,7 +53,7 @@ function Auth({ history }) {
                 </Col>
               </Row>
             </div>
-          </Container>
+          </Container> */}
           <div className="separator separator-bottom separator-skew zindex-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -92,18 +75,11 @@ function Auth({ history }) {
           <Row className="justify-content-center">
             <Switch>
               <Route
-                path={'/auth/login'}
-                component={Login}
+                path={'/classic/terms-condition'}
+                component={TermsNConditon}
               />
-              <Route
-                path={'/auth/register'}
-                component={Register}
-              />
-              <Route
-                path={'/auth/logout'}
-                component={Logout}
-              />
-              <Redirect from="*" to="/auth/register" />
+
+
             </Switch>
           </Row>
         </Container>
@@ -114,4 +90,4 @@ function Auth({ history }) {
 }
 
 
-export default Auth;
+export default Classic;
