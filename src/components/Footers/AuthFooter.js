@@ -32,54 +32,54 @@ class Login extends React.Component {
           <Container>
             <Row className="align-items-center justify-content-xl-between">
               <Col xl="6">
-                <div className="copyright text-center text-xl-left text-muted">
+                <div className="copyright text-center text-xl-left ">
                   © 2018{" "}
-                  <a
-                    className="font-weight-bold ml-1"
-                    href="Javascript:void(0)"
+                  <Link
+                    to={'/auth/login'}
                   >
-                    Creative Tim
-                  </a>
+                    Aclaro.
+              </Link>
                 </div>
               </Col>
               <Col xl="6">
                 <Nav className="nav-footer justify-content-center justify-content-xl-end">
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       href="https://www.creative-tim.com?ref=adr-auth-footer"
                       target="_blank"
                     >
                       Creative Tim
                     </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      href="https://www.creative-tim.com/presentation?ref=adr-auth-footer"
-                      target="_blank"
-                    >
-                      About Us
+                  </NavItem> */}
+                <NavItem>
+                  <NavLink
+                    href="https://www.creative-tim.com/presentation?ref=adr-auth-footer"
+                    target="_blank"
+                  >
+                    About Us
                     </NavLink>
-                  </NavItem>
+                </NavItem>
+                <NavItem>
                   <NavItem>
-                    <NavLink
-                      href="http://blog.creative-tim.com?ref=adr-auth-footer"
-                      target="_blank"
-                    >
-                      Blog
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <Link className="nav-link" to='/classic/terms-condition'>
+                    <Link className="nav-link" to='/classic/contact-us'>
 
-                      Terms & Condition
+                      Contact Us
 
                     </Link>
                   </NavItem>
+                </NavItem>
+                <NavItem>
+                  <Link className="nav-link" to='/classic/terms-condition'>
+
+                    Terms & Condition
+
+                    </Link>
+                </NavItem>
                 </Nav>
               </Col>
             </Row>
           </Container>
-        </footer>
+      </footer>
       </>
     );
   }

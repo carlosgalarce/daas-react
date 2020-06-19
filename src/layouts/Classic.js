@@ -18,19 +18,20 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, } from 'react-router-dom';
 // reactstrap components
-import { Container, Row, } from 'reactstrap';
+import { Container, } from 'reactstrap';
 
 // core components
 import AuthFooter from '../components/Footers/AuthFooter';
 
 // import routes from '../routes';
 import TermsNConditon from '../views/ClassicPages/TermsNConditon';
-
+import ContactUs from '../views/ClassicPages/ContactUs';
+import AuthNavbar from '../components/Navbars/AuthNavbar';
 function Classic() {
   useEffect(() => {
-    document.body.classList.add('bg-default');
+    document.body.classList.add('bg-custom');
     return () => {
-      document.body.classList.remove('bg-default');
+      document.body.classList.remove('bg-custom');
     };
   }, []);
 
@@ -40,8 +41,8 @@ function Classic() {
   return (
     <>
       <div className="main-content">
-        {/* <AuthNavbar /> */}
-        <div className="header bg-gradient-info py-7 py-lg-8">
+        <AuthNavbar />
+        <div className="header  py-7 py-lg-8">
           {/* <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
@@ -54,7 +55,7 @@ function Classic() {
               </Row>
             </div>
           </Container> */}
-          <div className="separator separator-bottom separator-skew zindex-100">
+          {/* <div className="separator separator-bottom separator-skew zindex-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -68,20 +69,23 @@ function Classic() {
                 points="2560 0 2560 100 0 100"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
         {/* Page content */}
         <Container className="mt--8 pb-5">
-          <Row className="justify-content-center">
-            <Switch>
-              <Route
-                path={'/classic/terms-condition'}
-                component={TermsNConditon}
-              />
+
+          <Switch>
+            <Route
+              path={'/classic/terms-condition'}
+              component={TermsNConditon}
+            />
+            <Route
+              path={'/classic/contact-us'}
+              component={ContactUs}
+            />
 
 
-            </Switch>
-          </Row>
+          </Switch>
         </Container>
       </div>
       <AuthFooter />
