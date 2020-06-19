@@ -20,6 +20,7 @@ import React from "react";
 
 // reactstrap components
 import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Footer extends React.Component {
   render() {
@@ -50,23 +51,21 @@ class Footer extends React.Component {
               </NavItem> */}
 
               <NavItem>
-                <NavLink
-                  href="https://www.creative-tim.com/presentation?ref=adr-admin-footer"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <Link className="nav-link" to='/classic/about-us'>
+
                   About Us
-                </NavLink>
+
+                    </Link>
+
               </NavItem>
 
               <NavItem>
-                <NavLink
-                  href="http://blog.creative-tim.com?ref=adr-admin-footer"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Blog
-                </NavLink>
+                <Link className="nav-link" to='/classic/contact-us'>
+
+                  Contact Us
+
+                    </Link>
+
               </NavItem>
 
               <NavItem>

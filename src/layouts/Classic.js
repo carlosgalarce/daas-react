@@ -27,6 +27,7 @@ import AuthFooter from '../components/Footers/AuthFooter';
 import TermsNConditon from '../views/ClassicPages/TermsNConditon';
 import ContactUs from '../views/ClassicPages/ContactUs';
 import AuthNavbar from '../components/Navbars/AuthNavbar';
+import AboutUs from '../views/ClassicPages/AboutUs';
 function Classic() {
   useEffect(() => {
     document.body.classList.add('bg-custom');
@@ -82,6 +83,10 @@ function Classic() {
             <Route
               path={'/classic/contact-us'}
               component={ContactUs}
+            />
+            <Route
+              path={'/classic/about-us'}
+              component={AboutUs}
             />
 
 

@@ -51,35 +51,35 @@ class Login extends React.Component {
                       Creative Tim
                     </NavLink>
                   </NavItem> */}
-                <NavItem>
-                  <NavLink
-                    href="https://www.creative-tim.com/presentation?ref=adr-auth-footer"
-                    target="_blank"
-                  >
-                    About Us
-                    </NavLink>
-                </NavItem>
-                <NavItem>
+                  <NavItem>
+                    <Link className="nav-link" to='/classic/about-us'>
+
+                      About Us
+
+                    </Link>
+
+                  </NavItem>
+
                   <NavItem>
                     <Link className="nav-link" to='/classic/contact-us'>
 
                       Contact Us
 
                     </Link>
-                  </NavItem>
-                </NavItem>
-                <NavItem>
-                  <Link className="nav-link" to='/classic/terms-condition'>
 
-                    Terms & Condition
+                  </NavItem>
+                  <NavItem>
+                    <Link className="nav-link" to='/classic/terms-condition'>
+
+                      Terms & Condition
 
                     </Link>
-                </NavItem>
+                  </NavItem>
                 </Nav>
               </Col>
             </Row>
           </Container>
-      </footer>
+        </footer>
       </>
     );
   }
